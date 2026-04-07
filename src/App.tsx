@@ -169,9 +169,9 @@ const HeroSection = ({ heroBg }: { heroBg?: string }) => (
           Premium Digital Mentorship in Pakistan
         </span>
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight leading-[1.1]">
-          Turn Your Effort Into <br />
+          Mentor Arena: Your Path to <br />
           <span className="text-brand-blue relative inline-block">
-            Real Digital Skills
+            Real Digital Skills in Pakistan
             <motion.span 
               initial={{ width: 0 }}
               whileInView={{ width: '100%' }}
@@ -181,7 +181,7 @@ const HeroSection = ({ heroBg }: { heroBg?: string }) => (
           </span>
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Students are raw power like flowing water. Mentor Arena provides the channel so your hard work becomes real projects and career opportunities.
+          Students in Pakistan are raw power like flowing water. Mentor Arena provides the channel so your hard work becomes real projects and career opportunities through 1-to-1 and small-batch mentorship.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="#booking" className="px-8 py-4 bg-brand-blue text-white rounded-xl font-bold hover:bg-brand-blue/90 transition-all flex items-center justify-center gap-2 shadow-xl shadow-brand-blue/20">
@@ -200,8 +200,8 @@ const WhoThisIsFor = () => (
   <section className="py-20 bg-gray-50 px-4">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Who This Is For</h2>
-        <p className="text-gray-600">Designed for the ambitious youth of Pakistan.</p>
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Tailored Mentorship for Pakistan's Ambitious Youth</h2>
+        <p className="text-gray-600">Designed for university students and career switchers in Pakistan who want to move into the high-demand digital economy.</p>
       </div>
       <div className="grid md:grid-cols-3 gap-8">
         {[
@@ -425,8 +425,8 @@ const CoursesOffered = ({ paths }: { paths: string[] }) => (
   <section id="courses" className="py-20 px-4">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Skill Paths We Master</h2>
-        <p className="text-gray-600">Choose your niche. We adapt our mentorship to your goal.</p>
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Project-Based Skill Paths We Master</h2>
+        <p className="text-gray-600">Choose your niche. We adapt our 1-to-1 mentorship to your specific career goals in Pakistan.</p>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {paths.map((path, i) => (
@@ -456,27 +456,27 @@ const MethodSection = ({ videoUrl, posterUrl }: { videoUrl?: string, posterUrl?:
     <div className="max-w-7xl mx-auto relative z-10">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">The "Real-World" Method</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">The "Real-World" Mentorship Method</h2>
           <div className="space-y-8">
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-10 h-10 bg-brand-green rounded-full flex items-center justify-center font-bold">1</div>
               <div>
-                <h4 className="text-xl font-bold mb-2">Student-Owned Projects</h4>
-                <p className="text-blue-50">You don't follow a dummy tutorial. You choose a real project or niche you care about, and we build it together.</p>
+                <h3 className="text-xl font-bold mb-2">Student-Owned Projects</h3>
+                <p className="text-blue-50">You don't follow a dummy tutorial. You choose a real project or niche you care about, and we build it together in a 1-to-1 environment.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-10 h-10 bg-brand-green rounded-full flex items-center justify-center font-bold">2</div>
               <div>
-                <h4 className="text-xl font-bold mb-2">Parallel Theory & Practice</h4>
-                <p className="text-blue-50">No boring long lectures. We explain a concept and apply it immediately to your project. Learning by doing is the only way.</p>
+                <h3 className="text-xl font-bold mb-2">Parallel Theory & Practice</h3>
+                <p className="text-blue-50">No boring long lectures. We explain a concept and apply it immediately to your project. Practice and theory run in parallel for maximum retention.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-10 h-10 bg-brand-green rounded-full flex items-center justify-center font-bold">3</div>
               <div>
-                <h4 className="text-xl font-bold mb-2">The Ultimate Certificate</h4>
-                <p className="text-blue-50">“One real, working project built by the student is the certificate that truly matters.” Your portfolio is your proof.</p>
+                <h3 className="text-xl font-bold mb-2">The Ultimate Certificate</h3>
+                <p className="text-blue-50">“One real, working project built by the student is the certificate that truly matters.” Your portfolio is your proof of competence in the Pakistan job market.</p>
               </div>
             </div>
           </div>
@@ -508,11 +508,11 @@ const MethodSection = ({ videoUrl, posterUrl }: { videoUrl?: string, posterUrl?:
 );
 
 const ComparisonSection = () => (
-  <section className="py-20 px-4">
+  <section id="comparison" className="py-20 px-4 bg-gray-50">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Mentor Arena?</h2>
-        <p className="text-gray-600">How we differ from conventional institutes.</p>
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Mentor Arena is Different from Conventional Courses</h2>
+        <p className="text-gray-600">We prioritize 1-to-1 attention over large, impersonal batches common in Pakistan.</p>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
@@ -539,11 +539,11 @@ const ComparisonSection = () => (
 );
 
 const PricingSection = () => (
-  <section id="pricing" className="py-20 bg-gray-50 px-4">
+  <section id="pricing" className="py-20 bg-white px-4">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Simple, Honest Pricing</h2>
-        <p className="text-gray-600">No hidden fees. Invest in your future.</p>
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Transparent Pricing for Premium Mentorship</h2>
+        <p className="text-gray-600">Invest in your future with our 1-to-1 or small-batch (max 3 students) programs.</p>
       </div>
       <div className="grid md:grid-cols-3 gap-8">
         {[PRICING.clarityCall, PRICING.oneToOne, PRICING.group].map((plan, i) => (
@@ -566,11 +566,11 @@ const PricingSection = () => (
 );
 
 const HowItWorks = () => (
-  <section className="py-20 px-4">
+  <section id="how-it-works" className="py-20 bg-gray-50 px-4">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
-        <p className="text-gray-600">Four simple steps to start your career.</p>
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Your Journey from Student to Professional</h2>
+        <p className="text-gray-600">A clear, project-driven path to mastering digital skills in Pakistan.</p>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
@@ -718,8 +718,8 @@ const BookingSection = ({ paths, slots }: { paths: string[], slots: string[] }) 
       <div className="max-w-4xl mx-auto">
         <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-brand-blue/10">
           <div className="mb-10">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Book Your Slot</h2>
-            <p className="text-gray-600">Fill in your details and we'll get back to you to finalize the schedule.</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Secure Your Slot for 1-to-1 Mentorship</h2>
+            <p className="text-gray-600">Limited slots available for our personalized sessions. Book your clarity call today to start your journey in the digital world.</p>
           </div>
           
           <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
@@ -840,16 +840,16 @@ const BookingSection = ({ paths, slots }: { paths: string[], slots: string[] }) 
 };
 
 const AboutMentor = ({ image }: { image: string }) => (
-  <section className="py-20 px-4">
+  <section id="about" className="py-20 px-4">
     <div className="max-w-7xl mx-auto">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
         <div className="order-2 lg:order-1">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">About Your Mentor</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">About Mentor Arena: Building Pakistan's Digital Future</h2>
           <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-            I am Fazal Shahid Latif, a 60‑year‑old self‑taught web developer and mentor from Karachi. I’ve seen how much untapped potential exists in students across Pakistan, especially those who never got a clear path.
+            Based in Karachi, we are dedicated to empowering students across Pakistan with practical, high-income skills through personalized mentorship.
           </p>
           <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-            At Mentor Arena, I’m not here just to teach you software or tools. My role is to help you think like an owner, solve real problems, and build something that is truly yours. I cut through the noise and give you a clear, practical route inside the digital niche you choose—so your effort turns into visible skills, projects, and opportunities.
+            I am Fazal Shahid Latif, a 60‑year‑old self‑taught web developer and mentor from Karachi. I’ve seen how much untapped potential exists in students across Pakistan, especially those who never got a clear path.
           </p>
           <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
             <div className="w-12 h-12 bg-brand-blue rounded-full flex items-center justify-center text-white font-bold">F</div>
@@ -876,10 +876,11 @@ const AboutMentor = ({ image }: { image: string }) => (
 );
 
 const FAQSection = () => (
-  <section className="py-20 bg-gray-50 px-4">
+  <section id="faq" className="py-20 bg-gray-50 px-4">
     <div className="max-w-3xl mx-auto">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions about Mentorship in Pakistan</h2>
+        <p className="text-gray-600">Everything you need to know about our project-based learning model.</p>
       </div>
       <div className="space-y-4">
         {FAQ_DATA.map((item, i) => (

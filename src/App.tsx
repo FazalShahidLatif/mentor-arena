@@ -273,10 +273,52 @@ const SyllabusDownload = () => {
     doc.setDrawColor(230, 230, 230);
     doc.line(20, 65, 190, 65);
 
-    // Course Modules
+    // Vision & Mission
     let yPos = 75;
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(26, 74, 124);
+    doc.text('Our Vision & Mission', 20, yPos);
+    yPos += 8;
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(0, 0, 0);
+    doc.text('Vision:', 20, yPos);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(60, 60, 60);
+    const visionText = doc.splitTextToSize('To empower the youth of Pakistan with world-class digital skills, turning raw potential into professional excellence.', 160);
+    doc.text(visionText, 35, yPos);
+    yPos += (visionText.length * 5) + 2;
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(0, 0, 0);
+    doc.text('Mission:', 20, yPos);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(60, 60, 60);
+    const missionText = doc.splitTextToSize('To provide personalized, project-driven mentorship that bridges the gap between theoretical knowledge and real-world career success.', 160);
+    doc.text(missionText, 35, yPos);
+    yPos += (missionText.length * 5) + 8;
+
+    // Career Ladder Section
+    doc.setFillColor(240, 248, 255); // Very light blue
+    doc.rect(20, yPos - 5, 170, 25, 'F');
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(26, 74, 124);
+    doc.text('Climbing the Career Ladder', 25, yPos + 2);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(0, 0, 0);
+    const careerText = doc.splitTextToSize("At Mentor Arena, we don't just teach; we build. By owning your project from day one, you gain the confidence and portfolio needed to climb the career ladder faster than conventional education allows. Your project is your proof of competence.", 160);
+    doc.text(careerText, 25, yPos + 8);
+    yPos += 30;
+
+    // Course Modules
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
+    doc.setTextColor(0, 0, 0);
     doc.text('Course Modules & Details', 20, yPos);
     yPos += 12;
 

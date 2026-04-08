@@ -62,4 +62,29 @@ To compete with established programs like iSkills or DigiSkills, Mentor Arena sh
 
 ---
 
+## 🌐 Hosting on Hostinger (Node.js Plan)
+
+This project is configured as a full-stack Express + Vite application, making it compatible with Hostinger's Node.js hosting plans.
+
+### Deployment Steps:
+
+1.  **Build the Project**:
+    *   Run `npm run build` in your local environment or via Hostinger's terminal. This creates the `dist/` directory.
+2.  **Upload Files**:
+    *   Upload all project files (including `package.json`, `server.ts`, and the `dist/` folder) to your Hostinger file manager.
+3.  **Node.js Configuration**:
+    *   In your Hostinger Panel, go to **Advanced > Node.js**.
+    *   Set the **App Directory** to your project root.
+    *   Set the **Node.js Version** to 22 or higher (recommended).
+    *   Set the **Application Startup File** to `server.ts`.
+4.  **Install Dependencies**:
+    *   Click **Install Dependencies** (runs `npm install`).
+5.  **Start the Application**:
+    *   Click **Start App** (runs `npm start`).
+
+### Environment Variables:
+If you use the Gemini API or other secrets, ensure you add them to the **Environment Variables** section in your Hostinger Node.js panel.
+
+---
+
 **Mentor Arena** - *Building Pakistan's Digital Future, One Project at a Time.*

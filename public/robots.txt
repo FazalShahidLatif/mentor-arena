@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mentorarena.online/sitemap.xml

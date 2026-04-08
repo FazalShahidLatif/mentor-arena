@@ -103,7 +103,7 @@ const Navbar = ({ onAdminClick }: { onAdminClick: () => void }) => {
     <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center gap-2 group cursor-pointer">
+          <a href="#" className="flex items-center gap-2 group cursor-pointer">
             <div className="w-10 h-10 bg-brand-blue rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform">
               <Shield className="text-white w-6 h-6" />
             </div>
@@ -111,7 +111,7 @@ const Navbar = ({ onAdminClick }: { onAdminClick: () => void }) => {
               <span className="text-xl font-bold text-brand-blue">Mentor <span className="text-brand-green">Arena</span></span>
               <span className="text-[10px] text-gray-400 font-medium tracking-wider uppercase">Online 1x1 Coaching</span>
             </div>
-          </div>
+          </a>
           
           <div className="hidden md:flex items-center gap-8">
             <a href="#courses" className="text-gray-600 hover:text-brand-blue transition-colors font-medium">Courses</a>
@@ -797,13 +797,36 @@ const BookingSection = ({ paths, slots }: { paths: string[], slots: string[] }) 
               <p className="text-sm text-brand-blue/80 mb-4">
                 Please send the fee to <strong>{BUSINESS_INFO.phone}</strong> ({BUSINESS_INFO.accountHolder}) via Easypaisa or JazzCash.
               </p>
-              <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">Upload Payment Proof (Screenshot)</label>
-                <input 
-                  type="file" 
-                  accept="image/*"
-                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-blue file:text-white hover:file:bg-brand-blue/90"
-                />
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-gray-700">Upload Payment Proof (Screenshot)</label>
+                  <input 
+                    type="file" 
+                    accept="image/*"
+                    className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-blue file:text-white hover:file:bg-brand-blue/90"
+                    onChange={(e) => {
+                      if (e.target.files && e.target.files[0]) {
+                        // We can't actually upload here without a backend, 
+                        // so we guide them to WhatsApp
+                        const whatsappUrl = `https://wa.me/${BUSINESS_INFO.phone.replace(/\s/g, '')}?text=${encodeURIComponent(`Hi Mentor Arena, I have just uploaded my payment proof for the ${formData.plan} (${formData.path}). Here is my name: ${formData.name}`)}`;
+                        window.open(whatsappUrl, '_blank');
+                      }
+                    }}
+                  />
+                </div>
+                <div className="pt-2">
+                  <p className="text-xs text-gray-500 mb-3 italic">
+                    * After selecting your screenshot, click the button below to send it directly to our WhatsApp for instant verification.
+                  </p>
+                  <a 
+                    href={`https://wa.me/${BUSINESS_INFO.phone.replace(/\s/g, '')}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-brand-green text-white rounded-xl font-bold hover:bg-brand-green/90 transition-all shadow-lg shadow-brand-green/20"
+                  >
+                    <MessageSquare size={18} /> Send Proof via WhatsApp
+                  </a>
+                </div>
               </div>
             </div>
 

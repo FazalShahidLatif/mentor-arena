@@ -1026,8 +1026,14 @@ const TestimonialsSection = () => (
               </div>
             </div>
           </div>
-          <div className="aspect-video bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center italic text-blue-200 text-sm p-8 text-center">
-            [Placeholder for Student Project Screenshots / WhatsApp Feedback]
+          <div className="aspect-video bg-white/5 rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+            <img 
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200&h=800" 
+              alt="Student Project - SaaS Dashboard" 
+              className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
+              referrerPolicy="no-referrer"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
@@ -1065,7 +1071,7 @@ const AboutMentor = ({ image }: { image: string }) => (
               </div>
             </div>
             <a 
-              href="https://www.linkedin.com/in/fazal-shahid-latif" 
+              href="https://www.linkedin.com/in/fazal-shahid-mentor/" 
               target="_blank" 
               rel="noreferrer"
               className="inline-flex items-center gap-2 text-brand-blue font-bold hover:underline"

@@ -61,6 +61,8 @@ export const AdminView: React.FC<AdminViewProps> = ({
   const [activeTab, setActiveTab] = useState<'courses' | 'schedule' | 'email' | 'media'>('courses');
   const [emailData, setEmailData] = useState({ studentName: '', plan: '1-to-1 Mentorship' });
 
+  const [isUploading, setIsUploading] = useState(false);
+
   const toggleSection = (section: keyof LayoutConfig['sections']) => {
     onUpdate({
       ...config,
@@ -82,6 +84,34 @@ export const AdminView: React.FC<AdminViewProps> = ({
       ...config,
       images: { ...config.images, [key]: value }
     });
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, key: keyof LayoutConfig['images']) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        updateImage(key, data.url);
+      } else {
+        const error = await response.json();
+        alert(error.error || 'Upload failed');
+      }
+    } catch (err) {
+      alert('Connection error during upload');
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const generateEmail = () => {
@@ -250,46 +280,93 @@ Mentor Arena`;
                   <h3 className="text-lg font-bold mb-4">Image Management</h3>
                   <div className="space-y-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-gray-700">Mentor Image URL</label>
-                      <div className="flex gap-4">
-                        <input 
-                          type="text" 
-                          value={config.images.mentor}
-                          onChange={(e) => updateImage('mentor', e.target.value)}
-                          className="flex-grow p-3 rounded-xl border border-gray-200"
-                        />
-                        <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
-                          <img src={config.images.mentor} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                      <label className="text-sm font-semibold text-gray-700">Mentor Image</label>
+                      <div className="flex flex-col gap-3">
+                        <div className="flex gap-4">
+                          <input 
+                            type="text" 
+                            placeholder="Image URL"
+                            value={config.images.mentor}
+                            onChange={(e) => updateImage('mentor', e.target.value)}
+                            className="flex-grow p-3 rounded-xl border border-gray-200"
+                          />
+                          <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
+                            <img src={config.images.mentor} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <label className={`cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                            <Plus size={16} /> {isUploading ? 'Uploading...' : 'Upload New Picture'}
+                            <input 
+                              type="file" 
+                              className="hidden" 
+                              accept="image/*"
+                              disabled={isUploading}
+                              onChange={(e) => handleFileUpload(e, 'mentor')}
+                            />
+                          </label>
+                          <span className="text-[10px] text-gray-400">Max 5MB (JPG, PNG, WebP)</span>
                         </div>
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-gray-700">Hero Background URL</label>
-                      <div className="flex gap-4">
-                        <input 
-                          type="text" 
-                          value={config.images.heroBg}
-                          onChange={(e) => updateImage('heroBg', e.target.value)}
-                          className="flex-grow p-3 rounded-xl border border-gray-200"
-                        />
-                        <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
-                          <img src={config.images.heroBg} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                      <label className="text-sm font-semibold text-gray-700">Hero Background</label>
+                      <div className="flex flex-col gap-3">
+                        <div className="flex gap-4">
+                          <input 
+                            type="text" 
+                            placeholder="Background URL"
+                            value={config.images.heroBg}
+                            onChange={(e) => updateImage('heroBg', e.target.value)}
+                            className="flex-grow p-3 rounded-xl border border-gray-200"
+                          />
+                          <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
+                            <img src={config.images.heroBg} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <label className={`cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                            <Plus size={16} /> {isUploading ? 'Uploading...' : 'Upload New Background'}
+                            <input 
+                              type="file" 
+                              className="hidden" 
+                              accept="image/*"
+                              disabled={isUploading}
+                              onChange={(e) => handleFileUpload(e, 'heroBg')}
+                            />
+                          </label>
                         </div>
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-gray-700">Method Section Video URL</label>
-                      <div className="flex gap-4">
-                        <input 
-                          type="text" 
-                          value={config.images.methodVideo}
-                          onChange={(e) => updateImage('methodVideo', e.target.value)}
-                          className="flex-grow p-3 rounded-xl border border-gray-200"
-                        />
-                        <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0 bg-gray-100 flex items-center justify-center">
-                          <ImageIcon size={20} className="text-gray-400" />
+                      <label className="text-sm font-semibold text-gray-700">Method Section Video</label>
+                      <div className="flex flex-col gap-3">
+                        <div className="flex gap-4">
+                          <input 
+                            type="text" 
+                            placeholder="Video URL"
+                            value={config.images.methodVideo}
+                            onChange={(e) => updateImage('methodVideo', e.target.value)}
+                            className="flex-grow p-3 rounded-xl border border-gray-200"
+                          />
+                          <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0 bg-gray-100 flex items-center justify-center">
+                            <ImageIcon size={20} className="text-gray-400" />
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <label className={`cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                            <Plus size={16} /> {isUploading ? 'Uploading...' : 'Upload New Video'}
+                            <input 
+                              type="file" 
+                              className="hidden" 
+                              accept="video/*"
+                              disabled={isUploading}
+                              onChange={(e) => handleFileUpload(e, 'methodVideo')}
+                            />
+                          </label>
+                          <span className="text-[10px] text-gray-400">Max 5MB (MP4, WebM)</span>
                         </div>
                       </div>
                     </div>

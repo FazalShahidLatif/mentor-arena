@@ -24,7 +24,8 @@ import {
   Plus,
   Trash2,
   Download,
-  FileText
+  FileText,
+  Linkedin
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -864,34 +865,78 @@ const BookingSection = ({ paths, slots }: { paths: string[], slots: string[] }) 
 };
 
 const AboutMentor = ({ image }: { image: string }) => (
-  <section id="about" className="py-20 px-4">
+  <section id="about" className="py-24 px-4 bg-white">
     <div className="max-w-7xl mx-auto">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* Main Mentor: Fazal Shahid Latif */}
+      <div className="grid lg:grid-cols-2 gap-16 items-start mb-24">
         <div className="order-2 lg:order-1">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">About Mentor Arena: Building Pakistan's Digital Future</h2>
-          <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-            Based in Karachi, we are dedicated to empowering students across Pakistan with practical, high-income skills through personalized mentorship.
-          </p>
-          <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-            I am Fazal Shahid Latif, a 60‑year‑old self‑taught web developer and mentor from Karachi. I’ve seen how much untapped potential exists in students across Pakistan, especially those who never got a clear path.
-          </p>
-          <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
-            <div className="w-12 h-12 bg-brand-blue rounded-full flex items-center justify-center text-white font-bold">F</div>
+          <div className="inline-block px-4 py-1.5 bg-brand-blue/10 text-brand-blue rounded-full text-sm font-bold mb-6 uppercase tracking-wider">
+            Main Mentor
+          </div>
+          <h2 className="text-4xl font-bold text-gray-900 mb-8 leading-tight">Fazal Shahid Latif</h2>
+          <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+            <p>
+              I am Fazal Shahid Latif, a 60‑year‑old self‑taught web developer and mentor from Karachi, Pakistan. I’ve seen how much untapped potential exists in students across Pakistan, especially those who never got a clear path.
+            </p>
+            <p>
+              At Mentor Arena, I’m not here just to teach you software or tools. My role is to help you think like an owner, solve real problems, and build something that is truly yours. I cut through the noise and give you a clear, practical route inside the digital niche you choose—so your effort turns into visible skills, projects, and opportunities.
+            </p>
+            <p className="font-medium text-brand-blue italic">
+              Over the years I’ve mentored students remotely across Pakistan—including Awais in Lahore, who later became an SEO specialist himself and now contributes back to Mentor Arena as a guest mentor.
+            </p>
+          </div>
+          <div className="mt-10 flex items-center gap-4 p-5 bg-gray-50 rounded-2xl border border-gray-100 shadow-sm">
+            <div className="w-14 h-14 bg-brand-blue rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-blue/20">F</div>
             <div>
-              <div className="font-bold text-gray-900">Fazal Shahid Latif</div>
-              <div className="text-sm text-gray-500">Lead Mentor & Founder</div>
+              <div className="font-bold text-gray-900 text-lg">Fazal Shahid Latif</div>
+              <div className="text-sm text-gray-500 font-medium">Lead Mentor & Founder</div>
             </div>
           </div>
         </div>
-        <div className="order-1 lg:order-2">
-          <div className="aspect-square bg-gray-200 rounded-3xl overflow-hidden relative">
+        <div className="order-1 lg:order-2 sticky top-24">
+          <div className="aspect-[4/5] bg-gray-100 rounded-[2rem] overflow-hidden relative shadow-2xl">
             <img 
               src={image} 
-              alt="Mentor" 
+              alt="Fazal Shahid Latif - Lead Mentor" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-brand-blue/10 mix-blend-multiply"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/20 to-transparent"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Guest Mentor: Awais Ghani */}
+      <div className="bg-gray-50 rounded-[3rem] p-8 md:p-16 border border-gray-100">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-4">
+            <div className="aspect-square bg-white rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+              <img 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800&h=800" 
+                alt="Awais Ghani - Guest Mentor" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+          <div className="lg:col-span-8">
+            <div className="inline-block px-4 py-1.5 bg-brand-green/10 text-brand-green rounded-full text-sm font-bold mb-6 uppercase tracking-wider">
+              Guest Mentor
+            </div>
+            <h3 className="text-3xl font-bold text-gray-900 mb-6">Awais Ghani</h3>
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              Awais Ghani is a Search Engine Optimization Specialist based in Lahore, Pakistan. He first started his SEO journey with Fazal Shahid Latif almost five years ago through remote, 1‑to‑1 mentoring—similar to how Mentor Arena works with students like Hamad today. Since then, he has gone on to apply and refine those skills in real projects and now returns as a guest SEO mentor and advisor, helping current students sharpen their search strategies.
+            </p>
+            <a 
+              href="https://www.linkedin.com/in/placeholder" 
+              target="_blank" 
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-700 rounded-xl font-bold hover:bg-gray-50 transition-all shadow-sm group"
+            >
+              <Linkedin size={20} className="text-[#0A66C2]" />
+              View LinkedIn Profile
+              <ArrowRight size={16} className="text-gray-400 group-hover:translate-x-1 transition-transform" />
+            </a>
           </div>
         </div>
       </div>

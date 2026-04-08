@@ -168,7 +168,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, config, onUpdat
                   autoFocus
                 />
               </div>
-              {error && <p className="text-red-500 text-xs font-medium">{error}</p>}
+              {error && (
+                <div className="space-y-2">
+                  <p className="text-red-500 text-xs font-medium">{error}</p>
+                  <p className="text-gray-400 text-[10px]">
+                    Tip: If you haven't set ADMIN_PASSWORD in Hostinger, the default is "admin123".
+                  </p>
+                </div>
+              )}
             </div>
             
             <button 

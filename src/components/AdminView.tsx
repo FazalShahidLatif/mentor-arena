@@ -282,7 +282,7 @@ Mentor Arena`;
                   <h3 className="text-lg font-bold mb-4">Image Management</h3>
                   <div className="space-y-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-gray-700">Mentor Image</label>
+                      <label className="text-sm font-semibold text-gray-700">Lead Mentor Profile (Fazal Shahid)</label>
                       <div className="flex flex-col gap-3">
                         <div className="flex gap-4">
                           <input 
@@ -313,7 +313,7 @@ Mentor Arena`;
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-gray-700">Guest Mentor Image</label>
+                      <label className="text-sm font-semibold text-gray-700">Guest Mentor Profile (Awais Ghani)</label>
                       <div className="flex flex-col gap-3">
                         <div className="flex gap-4">
                           <input 
@@ -343,7 +343,7 @@ Mentor Arena`;
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-gray-700">Case Study Image</label>
+                      <label className="text-sm font-semibold text-gray-700">Student Project Case Study (SaaS Dashboard)</label>
                       <div className="flex flex-col gap-3">
                         <div className="flex gap-4">
                           <input 
@@ -373,7 +373,7 @@ Mentor Arena`;
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-gray-700">Hero Background</label>
+                      <label className="text-sm font-semibold text-gray-700">Hero Section Background (Top of Page)</label>
                       <div className="flex flex-col gap-3">
                         <div className="flex gap-4">
                           <input 
@@ -403,7 +403,7 @@ Mentor Arena`;
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-gray-700">Method Section Video</label>
+                      <label className="text-sm font-semibold text-gray-700">Methodology Background Video</label>
                       <div className="flex flex-col gap-3">
                         <div className="flex gap-4">
                           <input 
@@ -434,7 +434,7 @@ Mentor Arena`;
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-gray-700">Method Section Poster (Thumbnail)</label>
+                      <label className="text-sm font-semibold text-gray-700">Methodology Video Poster (Static Thumbnail)</label>
                       <div className="flex flex-col gap-3">
                         <div className="flex gap-4">
                           <input 

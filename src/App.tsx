@@ -374,6 +374,92 @@ const SyllabusDownload = () => {
       yPos += 6;
     });
 
+    // --- New Sections: Fee Structure, Schedule, Payment ---
+    
+    // Check for page break
+    if (yPos > 220) {
+      doc.addPage();
+      addThemeBlocks(doc);
+      yPos = 60;
+    }
+
+    // Fee Structure
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(0, 0, 0);
+    doc.text('Fee Structure', 20, yPos);
+    yPos += 10;
+
+    autoTable(doc, {
+      startY: yPos,
+      head: [['Program', 'Price', 'Duration']],
+      body: [
+        [PRICING.clarityCall.title, PRICING.clarityCall.price, PRICING.clarityCall.duration],
+        [PRICING.oneToOne.title, PRICING.oneToOne.price, PRICING.oneToOne.duration],
+        [PRICING.group.title, PRICING.group.price, PRICING.group.duration],
+      ],
+      theme: 'striped',
+      headStyles: { fillColor: [26, 74, 124] },
+      margin: { left: 20, right: 20 },
+    });
+
+    yPos = (doc as any).lastAutoTable.finalY + 15;
+
+    // Class Schedule
+    if (yPos > 240) {
+      doc.addPage();
+      addThemeBlocks(doc);
+      yPos = 60;
+    }
+
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(0, 0, 0);
+    doc.text('Class Schedule (Mentorship)', 20, yPos);
+    yPos += 10;
+
+    autoTable(doc, {
+      startY: yPos,
+      head: [['Batch Time', 'Daily Duration', 'Notes']],
+      body: DAILY_SCHEDULE.mentorshipSessions.map(session => [
+        session.time,
+        session.duration,
+        session.note || '-'
+      ]),
+      theme: 'grid',
+      headStyles: { fillColor: [76, 175, 80] },
+      margin: { left: 20, right: 20 },
+    });
+
+    yPos = (doc as any).lastAutoTable.finalY + 15;
+
+    // How to Pay
+    if (yPos > 240) {
+      doc.addPage();
+      addThemeBlocks(doc);
+      yPos = 60;
+    }
+
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(0, 0, 0);
+    doc.text('How to Pay', 20, yPos);
+    yPos += 10;
+
+    doc.setFillColor(245, 247, 250);
+    doc.rect(20, yPos, 170, 35, 'F');
+    
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(26, 74, 124);
+    doc.text('Account Details:', 25, yPos + 8);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(0, 0, 0);
+    doc.text(`Account Holder: ${BUSINESS_INFO.accountHolder}`, 25, yPos + 15);
+    doc.text(`Phone / Account Number: ${BUSINESS_INFO.phone}`, 25, yPos + 22);
+    doc.text(`Payment Methods: ${BUSINESS_INFO.paymentMethods.join(', ')}`, 25, yPos + 29);
+
     // Footer
     const pageCount = doc.getNumberOfPages();
     for (let i = 1; i <= pageCount; i++) {

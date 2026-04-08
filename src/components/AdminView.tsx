@@ -293,7 +293,7 @@ Mentor Arena`;
                             className="flex-grow p-3 rounded-xl border border-gray-200"
                           />
                           <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
-                            <img src={config.images.mentor} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                            <img src={config.images.mentor} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" decoding="async" loading="lazy" />
                           </div>
                         </div>
                         <div className="flex items-center gap-4">
@@ -324,7 +324,7 @@ Mentor Arena`;
                             className="flex-grow p-3 rounded-xl border border-gray-200"
                           />
                           <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
-                            <img src={config.images.guestMentor} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                            <img src={config.images.guestMentor} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" decoding="async" loading="lazy" />
                           </div>
                         </div>
                         <div className="flex items-center gap-4">
@@ -354,7 +354,7 @@ Mentor Arena`;
                             className="flex-grow p-3 rounded-xl border border-gray-200"
                           />
                           <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
-                            <img src={config.images.caseStudy} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                            <img src={config.images.caseStudy} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" decoding="async" loading="lazy" />
                           </div>
                         </div>
                         <div className="flex items-center gap-4">
@@ -384,7 +384,7 @@ Mentor Arena`;
                             className="flex-grow p-3 rounded-xl border border-gray-200"
                           />
                           <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
-                            <img src={config.images.heroBg} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                            <img src={config.images.heroBg} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" decoding="async" loading="lazy" />
                           </div>
                         </div>
                         <div className="flex items-center gap-4">
@@ -445,7 +445,7 @@ Mentor Arena`;
                             className="flex-grow p-3 rounded-xl border border-gray-200"
                           />
                           <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
-                            <img src={config.images.methodPoster} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                            <img src={config.images.methodPoster} alt="Preview" className="w-full h-full object-cover" referrerPolicy="no-referrer" decoding="async" loading="lazy" />
                           </div>
                         </div>
                         <div className="flex items-center gap-4">

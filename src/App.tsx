@@ -168,6 +168,7 @@ const HeroSection = ({ heroBg }: { heroBg?: string }) => (
           className="w-full h-full object-cover" 
           referrerPolicy="no-referrer" 
           fetchPriority="high"
+          decoding="async"
         />
       </div>
     )}
@@ -1123,6 +1124,7 @@ const TestimonialsSection = ({ caseStudyImage }: { caseStudyImage?: string }) =>
               className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
               referrerPolicy="no-referrer"
               loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -1178,6 +1180,7 @@ const AboutMentor = ({ image, guestImage }: { image: string, guestImage?: string
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
               loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/20 to-transparent"></div>
           </div>
@@ -1195,6 +1198,7 @@ const AboutMentor = ({ image, guestImage }: { image: string, guestImage?: string
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
                 loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

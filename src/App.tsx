@@ -254,222 +254,372 @@ const SyllabusDownload = () => {
     const doc = new jsPDF();
     
     const addThemeBlocks = (pdf: jsPDF) => {
-      // Side Accent Block
       pdf.setFillColor(76, 175, 80); // Brand Green
       pdf.rect(0, 0, 4, 297, 'F');
-      
-      // Header Block
       pdf.setFillColor(26, 74, 124); // Brand Blue
       pdf.rect(0, 0, 210, 45, 'F');
-      
-      // Logo Block
       pdf.setFillColor(76, 175, 80); // Brand Green
       pdf.rect(20, 12, 12, 12, 'F');
       pdf.setTextColor(255, 255, 255);
       pdf.setFontSize(14);
       pdf.setFont('helvetica', 'bold');
       pdf.text('M', 26, 21, { align: 'center' });
-      
       pdf.setTextColor(255, 255, 255);
       pdf.setFontSize(22);
       pdf.setFont('helvetica', 'bold');
       pdf.text('MENTOR ARENA', 38, 22);
-      
       pdf.setFontSize(10);
       pdf.setFont('helvetica', 'normal');
       pdf.text('Premium Digital Mentorship in Pakistan', 38, 30);
     };
 
+    // --- PAGE 1: COVER PAGE ---
     addThemeBlocks(doc);
-    
-    // Contact Info
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(10);
-    doc.text(`WhatsApp: ${BUSINESS_INFO.phone}`, 20, 55);
-    doc.text(`Email: support@mentorarena.online`, 20, 60);
-    doc.text(`Date: ${new Date().toLocaleDateString()}`, 190, 55, { align: 'right' });
+    let yPos = 100;
+    doc.setTextColor(26, 74, 124);
+    doc.setFontSize(28);
+    doc.setFont('helvetica', 'bold');
+    const title = doc.splitTextToSize('Mentor Arena – 6-Month Digital Skills Mentorship Syllabus', 160);
+    doc.text(title, 20, yPos);
+    yPos += (title.length * 12) + 10;
 
-    doc.setDrawColor(230, 230, 230);
-    doc.line(20, 65, 190, 65);
+    doc.setFontSize(18);
+    doc.setTextColor(76, 175, 80);
+    doc.text('Web Development · SEO · Content & Digital Marketing', 20, yPos);
+    yPos += 20;
 
-    // Vision & Mission
-    let yPos = 75;
     doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(26, 74, 124);
-    doc.text('Our Vision & Mission', 20, yPos);
-    yPos += 8;
-
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(0, 0, 0);
-    doc.text('Vision:', 20, yPos);
-    doc.setFont('helvetica', 'normal');
     doc.setTextColor(60, 60, 60);
-    const visionText = doc.splitTextToSize('To empower the youth of Pakistan with world-class digital skills, turning raw potential into professional excellence.', 160);
-    doc.text(visionText, 35, yPos);
-    yPos += (visionText.length * 5) + 2;
-
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(0, 0, 0);
-    doc.text('Mission:', 20, yPos);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(60, 60, 60);
-    const missionText = doc.splitTextToSize('To provide personalized, project-driven mentorship that bridges the gap between theoretical knowledge and real-world career success.', 160);
-    doc.text(missionText, 35, yPos);
-    yPos += (missionText.length * 5) + 8;
-
-    // Career Ladder Section
-    doc.setFillColor(240, 248, 255); // Very light blue
-    doc.rect(20, yPos - 5, 170, 25, 'F');
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(26, 74, 124);
-    doc.text('Climbing the Career Ladder', 25, yPos + 2);
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(0, 0, 0);
-    const careerText = doc.splitTextToSize("At Mentor Arena, we don't just teach; we build. By owning your project from day one, you gain the confidence and portfolio needed to climb the career ladder faster than conventional education allows. Your project is your proof of competence.", 160);
-    doc.text(careerText, 25, yPos + 8);
+    doc.setFont('helvetica', 'italic');
+    const promise = doc.splitTextToSize('“A practical, project-based path to your first real portfolio and digital income skills.”', 160);
+    doc.text(promise, 20, yPos);
     yPos += 30;
 
-    // Course Modules
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`Mentored by ${BUSINESS_INFO.accountHolder}`, 20, yPos);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Based in Karachi, mentoring students across Pakistan (online only).', 20, yPos + 7);
+    
+    doc.text(`Year: 2026`, 20, 270);
+
+    // --- PAGE 2: OVERVIEW ---
+    doc.addPage();
+    addThemeBlocks(doc);
+    yPos = 60;
+
     doc.setFontSize(16);
     doc.setFont('helvetica', 'bold');
-    doc.setTextColor(0, 0, 0);
-    doc.text('Course Modules & Details', 20, yPos);
-    yPos += 12;
+    doc.setTextColor(26, 74, 124);
+    doc.text('What This Program Is', 20, yPos);
+    yPos += 10;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(60, 60, 60);
+    const whatIs = [
+      '• 1-to-1 or small-batch live mentorship (max 3 students).',
+      '• Entirely project-based: you build while you learn.',
+      '• 6-month intensive duration with 120–150+ live hours.',
+      '• Focused on real-world skills that the digital economy actually pays for.'
+    ];
+    whatIs.forEach(line => {
+      doc.text(line, 25, yPos);
+      yPos += 7;
+    });
+    yPos += 5;
 
-    Object.entries(COURSE_DETAILS).forEach(([course, modules]) => {
-      if (yPos > 250) {
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(26, 74, 124);
+    doc.text('Who This Is For', 20, yPos);
+    yPos += 10;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const whoIs = [
+      '• University students wanting practical skills alongside their degree.',
+      '• Fresh graduates struggling to find work due to lack of experience.',
+      '• Career switchers looking to enter the tech or digital marketing space.',
+      '• Self-taught learners who feel stuck and need professional direction.',
+      '• Anyone in Pakistan wanting to earn in USD through global remote work.'
+    ];
+    whoIs.forEach(line => {
+      doc.text(line, 25, yPos);
+      yPos += 7;
+    });
+    yPos += 5;
+
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(26, 74, 124);
+    doc.text('By the End, You Will', 20, yPos);
+    yPos += 10;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const outcomes = [
+      '• Have a professional portfolio with at least 3 real-world projects.',
+      '• Master industry-standard tools (VS Code, React, Search Console, etc.).',
+      '• Understand how to find, pitch, and manage freelance or remote clients.',
+      '• Possess the confidence to solve technical problems independently.',
+      '• Have a clear roadmap for your specific digital career path.'
+    ];
+    outcomes.forEach(line => {
+      doc.text(line, 25, yPos);
+      yPos += 7;
+    });
+    yPos += 5;
+
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(26, 74, 124);
+    doc.text('Weekly Time Commitment', 20, yPos);
+    yPos += 10;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const commitment = doc.splitTextToSize('Expect to spend 10–15 hours per week. This includes 4–6 hours of live mentorship sessions and 6–10 hours of independent practice and project work. Consistency is the only secret to success here.', 160);
+    doc.text(commitment, 20, yPos);
+    yPos += (commitment.length * 5) + 10;
+
+    // --- PAGE 3: WHAT IT IS NOT & PREREQUISITES ---
+    doc.addPage();
+    addThemeBlocks(doc);
+    yPos = 60;
+
+    doc.setFillColor(255, 240, 240);
+    doc.rect(20, yPos, 170, 45, 'F');
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(200, 0, 0);
+    doc.text('What This Program Is NOT', 25, yPos + 10);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(60, 60, 60);
+    const isNot = [
+      '• Not a get-rich-quick scheme or "magic" button.',
+      '• Not a pre-recorded video course (it is 100% live).',
+      '• Not a guaranteed job placement agency.',
+      '• Not for people who won’t practice outside of live sessions.'
+    ];
+    isNot.forEach((line, i) => {
+      doc.text(line, 30, yPos + 20 + (i * 6));
+    });
+    yPos += 55;
+
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(26, 74, 124);
+    doc.text('Prerequisites', 20, yPos);
+    yPos += 10;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const prereqs = [
+      '• Basic understanding of English (to read documentation).',
+      '• A working laptop (minimum 8GB RAM recommended).',
+      '• A stable internet connection for live video calls.',
+      '• Willingness to practice at least 10 hours per week.',
+      '• An open mind and a thick skin for honest feedback.'
+    ];
+    prereqs.forEach(line => {
+      doc.text(line, 25, yPos);
+      yPos += 7;
+    });
+    yPos += 15;
+
+    // --- PAGE 4+: PROGRAM STRUCTURE (PHASES) ---
+    doc.addPage();
+    addThemeBlocks(doc);
+    yPos = 60;
+
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(0, 0, 0);
+    doc.text('Program Structure (6-Month Roadmap)', 20, yPos);
+    yPos += 15;
+
+    const phases = [
+      {
+        title: 'Phase 1: Foundations & Digital Literacy',
+        duration: 'Weeks 1–4',
+        topics: ['Internet fundamentals', 'How search engines work', 'Basic HTML/CSS', 'Setting up a professional environment'],
+        practice: ['Building your first static page', 'Setting up GitHub', 'Keyword research basics'],
+        outcome: 'A live, personal landing page and a professional digital setup.'
+      },
+      {
+        title: 'Phase 2: Web Development Essentials',
+        duration: 'Weeks 5–12',
+        topics: ['Advanced CSS & Flexbox', 'JavaScript Fundamentals', 'React.js Basics', 'Responsive Design'],
+        practice: ['Coding interactive components', 'Cloning a popular UI', 'Debugging real errors'],
+        outcome: 'A fully responsive, multi-page website built from scratch.'
+      },
+      {
+        title: 'Phase 3: SEO & Content Strategy',
+        duration: 'Weeks 13–18',
+        topics: ['Technical SEO audits', 'On-page optimization', 'Content SILO structures', 'Backlink strategies'],
+        practice: ['Optimizing a live site', 'Writing SEO-ready articles', 'Using Search Console'],
+        outcome: 'A documented SEO strategy and 3 optimized articles ranking for specific keywords.'
+      },
+      {
+        title: 'Phase 4: Marketing Automation & Freelancing',
+        duration: 'Weeks 19–24',
+        topics: ['Email marketing funnels', 'Zapier/Automation', 'Portfolio building', 'Freelance platform mastery'],
+        practice: ['Setting up an automated funnel', 'Optimizing LinkedIn/Upwork', 'Mock client pitching'],
+        outcome: 'A complete professional portfolio and a ready-to-launch freelance profile.'
+      }
+    ];
+
+    phases.forEach((phase, i) => {
+      if (yPos > 220) {
         doc.addPage();
         addThemeBlocks(doc);
         yPos = 60;
       }
 
-      // Course Header Block
       doc.setFillColor(245, 247, 250);
       doc.rect(20, yPos - 6, 170, 8, 'F');
-      
       doc.setFontSize(12);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(26, 74, 124);
-      doc.text(course, 24, yPos);
+      doc.text(`${phase.title} (${phase.duration})`, 24, yPos);
       yPos += 10;
 
-      doc.setFontSize(10);
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(0, 0, 0);
+      doc.text('Topics Covered:', 25, yPos);
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(60, 60, 60);
-      
-      modules.forEach((module) => {
-        if (yPos > 275) {
-          doc.addPage();
-          addThemeBlocks(doc);
-          yPos = 60;
-        }
-        doc.text(`• ${module}`, 28, yPos);
-        yPos += 7;
-      });
-      
-      yPos += 6;
+      doc.text(phase.topics.join(', '), 55, yPos);
+      yPos += 7;
+
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(0, 0, 0);
+      doc.text('Practice:', 25, yPos);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(60, 60, 60);
+      doc.text(phase.practice.join(' • '), 45, yPos);
+      yPos += 7;
+
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(76, 175, 80);
+      doc.text('Project Outcome:', 25, yPos);
+      doc.setFont('helvetica', 'normal');
+      doc.text(phase.outcome, 55, yPos);
+      yPos += 15;
     });
 
-    // --- New Sections: Fee Structure, Schedule, Payment ---
-    
-    // Check for page break
-    if (yPos > 220) {
-      doc.addPage();
-      addThemeBlocks(doc);
-      yPos = 60;
-    }
-
-    // Fee Structure
-    doc.setFontSize(16);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(0, 0, 0);
-    doc.text('Fee Structure', 20, yPos);
-    yPos += 10;
-
-    autoTable(doc, {
-      startY: yPos,
-      head: [['Program', 'Price', 'Duration']],
-      body: [
-        [PRICING.clarityCall.title, PRICING.clarityCall.price, PRICING.clarityCall.duration],
-        [PRICING.oneToOne.title, PRICING.oneToOne.price, PRICING.oneToOne.duration],
-        [PRICING.group.title, PRICING.group.price, PRICING.group.duration],
-      ],
-      theme: 'striped',
-      headStyles: { fillColor: [26, 74, 124] },
-      margin: { left: 20, right: 20 },
-    });
-
-    yPos = (doc as any).lastAutoTable.finalY + 15;
-
-    // Class Schedule
-    if (yPos > 240) {
-      doc.addPage();
-      addThemeBlocks(doc);
-      yPos = 60;
-    }
+    // --- PAGE: HOW IT WORKS & EXPECTATIONS ---
+    doc.addPage();
+    addThemeBlocks(doc);
+    yPos = 60;
 
     doc.setFontSize(16);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(0, 0, 0);
-    doc.text('Class Schedule (Mentorship)', 20, yPos);
-    yPos += 10;
-
-    autoTable(doc, {
-      startY: yPos,
-      head: [['Batch Time', 'Daily Duration', 'Notes']],
-      body: DAILY_SCHEDULE.mentorshipSessions.map(session => [
-        session.time,
-        session.duration,
-        session.note || '-'
-      ]),
-      theme: 'grid',
-      headStyles: { fillColor: [76, 175, 80] },
-      margin: { left: 20, right: 20 },
-    });
-
-    yPos = (doc as any).lastAutoTable.finalY + 15;
-
-    // How to Pay
-    if (yPos > 240) {
-      doc.addPage();
-      addThemeBlocks(doc);
-      yPos = 60;
-    }
-
-    doc.setFontSize(16);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(0, 0, 0);
-    doc.text('How to Pay', 20, yPos);
-    yPos += 10;
-
-    doc.setFillColor(245, 247, 250);
-    doc.rect(20, yPos, 170, 35, 'F');
-    
-    doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(26, 74, 124);
-    doc.text('Account Details:', 25, yPos + 8);
-    
+    doc.text('How Mentorship Works', 20, yPos);
+    yPos += 10;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const howWorks = [
+      '• Live 1-to-1 or small-batch sessions via Google Meet/Zoom.',
+      '• Direct feedback on every assignment you submit.',
+      '• Weekly accountability check-ins to ensure you aren’t falling behind.',
+      '• 24/7 access to a private WhatsApp group for quick questions.',
+      '• We adjust the pace based on your speed—no one gets left behind.',
+      '• Real-world simulations: we treat your projects like real client work.'
+    ];
+    howWorks.forEach(line => {
+      doc.text(line, 25, yPos);
+      yPos += 7;
+    });
+    yPos += 10;
+
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(26, 74, 124);
+    doc.text('Student Expectations', 20, yPos);
+    yPos += 10;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const studentExpect = [
+      '• Show up on time for every live session.',
+      '• Complete assignments before the deadline.',
+      '• Be proactive: ask questions when you are stuck.',
+      '• Be honest about your struggles so we can help.',
+      '• Respect the mentor’s time and the learning process.'
+    ];
+    studentExpect.forEach(line => {
+      doc.text(line, 25, yPos);
+      yPos += 7;
+    });
+
+    // --- PAGE: FAQ ---
+    doc.addPage();
+    addThemeBlocks(doc);
+    yPos = 60;
+
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(26, 74, 124);
+    doc.text('Frequently Asked Questions', 20, yPos);
+    yPos += 12;
+
+    const faqs = [
+      { q: 'Is this beginner-friendly?', a: 'Yes. We start from the absolute basics of how the internet works.' },
+      { q: 'What if I miss a session?', a: 'Since it’s 1-to-1, we can reschedule. However, frequent misses are discouraged.' },
+      { q: 'Do I need to know coding before starting?', a: 'No. We will teach you everything you need to know from scratch.' },
+      { q: 'Can I focus more on SEO or Web Dev?', a: 'Yes. The mentorship is personalized to your career goals.' },
+      { q: 'Will I get help with my portfolio or CV?', a: 'Absolutely. Building your portfolio is a core part of the final phase.' }
+    ];
+
+    faqs.forEach(faq => {
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(0, 0, 0);
+      const qText = doc.splitTextToSize(`Q: ${faq.q}`, 160);
+      doc.text(qText, 20, yPos);
+      yPos += (qText.length * 5);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(60, 60, 60);
+      const aText = doc.splitTextToSize(`A: ${faq.a}`, 160);
+      doc.text(aText, 20, yPos);
+      yPos += (aText.length * 5) + 5;
+    });
+
+    // --- PAGE: FINAL CTA ---
+    doc.addPage();
+    addThemeBlocks(doc);
+    yPos = 100;
+
+    doc.setFontSize(22);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(26, 74, 124);
+    doc.text('Ready to Start?', 20, yPos);
+    yPos += 15;
+
+    doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(0, 0, 0);
-    doc.text(`Account Holder: ${BUSINESS_INFO.accountHolder}`, 25, yPos + 15);
-    doc.text(`Phone / Account Number: ${BUSINESS_INFO.phone}`, 25, yPos + 22);
-    doc.text(`Payment Methods: ${BUSINESS_INFO.paymentMethods.join(', ')}`, 25, yPos + 29);
+    const finalCta = doc.splitTextToSize('If this syllabus feels right for you, the next step is to book a clarity call. We will discuss your goals, answer your questions, and see if we are a good fit for each other.', 160);
+    doc.text(finalCta, 20, yPos);
+    yPos += (finalCta.length * 6) + 20;
 
-    // Footer
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(76, 175, 80);
+    doc.text('[Visit mentorarena.online to book your clarity call]', 20, yPos);
+    yPos += 20;
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.text('Note: Policies (Privacy, Terms, Refunds) are available on the website.', 20, yPos);
+
+    // Footer for all pages
     const pageCount = doc.getNumberOfPages();
     for (let i = 1; i <= pageCount; i++) {
       doc.setPage(i);
-      
-      // Footer Block
       doc.setFillColor(26, 74, 124);
       doc.rect(0, 287, 210, 10, 'F');
-      
       doc.setFontSize(8);
       doc.setTextColor(255, 255, 255);
       doc.text('© Mentor Arena - Karachi, Pakistan. All rights reserved.', 105, 293, { align: 'center' });

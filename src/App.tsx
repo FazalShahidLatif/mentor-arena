@@ -25,7 +25,9 @@ import {
   Trash2,
   Download,
   FileText,
-  Linkedin
+   Linkedin,
+  Star,
+  ExternalLink
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -181,6 +183,29 @@ const HeroSection = ({ heroBg }: { heroBg?: string }) => (
         <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium text-brand-blue bg-brand-blue/5 rounded-full border border-brand-blue/10">
           Premium Digital Mentorship in Pakistan
         </span>
+
+        {/* Live Google Trust Badge */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+          className="flex items-center justify-center gap-3 mb-8 bg-white/50 backdrop-blur-sm px-5 py-2.5 rounded-full border border-gray-100 shadow-sm w-fit mx-auto cursor-default hover:shadow-md transition-shadow"
+        >
+          <div className="flex -space-x-3">
+             <div className="w-8 h-8 rounded-full bg-brand-blue flex items-center justify-center border-2 border-white text-[10px] text-white font-bold">A</div>
+             <div className="w-8 h-8 rounded-full bg-brand-green flex items-center justify-center border-2 border-white text-[10px] text-white font-bold">S</div>
+             <div className="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center border-2 border-white text-[10px] text-white font-bold">K</div>
+          </div>
+          <div className="h-4 w-px bg-gray-200 mx-1"></div>
+          <div className="flex items-center gap-1.5">
+            <div className="flex text-yellow-400">
+              {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
+            </div>
+            <span className="text-sm font-bold text-gray-800">5.0 on Google Reviews</span>
+            <img src="https://www.gstatic.com/images/branding/product/2x/google_24dp.png" alt="" className="w-4 h-4" />
+          </div>
+        </motion.div>
+
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight leading-[1.1]">
           1-to-1 Digital Skills Mentorship in Pakistan: <br />
           <span className="text-brand-blue relative inline-block">
@@ -243,6 +268,18 @@ const SyllabusDownload = () => {
   const [email, setEmail] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [showForm, setShowForm] = useState(false);
+
+  const saveLead = async (data: any) => {
+    try {
+      await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+    } catch (err) {
+      console.error('Failed to save lead:', err);
+    }
+  };
 
   const generatePDF = () => {
     if (!email || !email.includes('@')) {
@@ -630,6 +667,9 @@ const SyllabusDownload = () => {
     setIsGenerating(false);
     setShowForm(false);
     setEmail('');
+
+    // Save lead
+    saveLead({ type: 'syllabus_download', email });
   };
 
   return (
@@ -1000,6 +1040,21 @@ const BookingSection = ({ paths, slots }: { paths: string[], slots: string[] }) 
     
     setIsSubmitting(true);
     await new Promise(resolve => setTimeout(resolve, 800));
+    
+    // Save lead to server
+    try {
+      await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'booking',
+          ...formData
+        }),
+      });
+    } catch (err) {
+      console.error('Failed to save lead:', err);
+    }
+
     setSubmitted(true);
     setIsSubmitting(false);
     
@@ -1220,8 +1275,53 @@ const TestimonialsSection = ({ caseStudyImage }: { caseStudyImage?: string }) =>
   <section className="py-24 bg-white px-4">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Real Stories from Real Students</h2>
-        <p className="text-gray-600">See how Mentor Arena is changing lives across Pakistan.</p>
+        <h2 className="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Verified Success on Google</h2>
+        <p className="text-lg text-gray-600">See what our students are saying about their journey at Mentor Arena.</p>
+      </div>
+
+      {/* Google Trust Banner */}
+      <div className="mb-16 bg-gray-50/50 border border-gray-100 rounded-[3rem] p-8 md:p-12 text-center">
+        <div className="flex flex-col items-center gap-6">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center border border-gray-100">
+              <img 
+                src="https://www.gstatic.com/images/branding/product/2x/google_24dp.png" 
+                alt="Google" 
+                className="w-6 h-6"
+              />
+            </div>
+            <div className="text-left">
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <div className="text-lg font-bold text-gray-900 mt-1">Excellent 5.0 Rating</div>
+            </div>
+          </div>
+          
+          <div className="max-w-2xl mx-auto">
+            <p className="text-gray-600 leading-relaxed italic">
+              "Mentor Arena has a perfect 5-star rating on Google Reviews. Our commitment to 1-to-1 practical mentorship ensures every student gets the attention they deserve."
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a 
+              href="https://www.google.com/search?q=Mentor+Arena+Karachi+Reviews" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-brand-blue text-white rounded-full font-bold hover:bg-brand-blue/90 transition-all shadow-lg shadow-brand-blue/20"
+            >
+              Check Live Google Reviews
+              <ExternalLink size={16} />
+            </a>
+            <div className="px-6 py-3 bg-white border border-gray-100 rounded-full text-sm font-semibold text-gray-500 flex items-center gap-2">
+              <CheckCircle size={16} className="text-brand-green" />
+              Verified via Google Business
+            </div>
+          </div>
+        </div>
       </div>
       
       <div className="grid md:grid-cols-2 gap-8 mb-16">
@@ -1536,28 +1636,45 @@ const Footer = ({ onOpenLegal }: { onOpenLegal: (type: 'privacy' | 'terms' | 'co
 export default function App() {
   const [showAdmin, setShowAdmin] = useState(false);
   const [legalType, setLegalType] = useState<'privacy' | 'terms' | 'cookies' | 'refund' | null>(null);
-  const [config, setConfig] = useState<LayoutConfig>(() => {
-    const saved = localStorage.getItem('mentor_arena_config');
-    if (!saved) return DEFAULT_LAYOUT;
-    try {
-      const parsed = JSON.parse(saved);
-      // Deep merge with default to handle schema changes
-      return {
-        ...DEFAULT_LAYOUT,
-        ...parsed,
-        sections: { ...DEFAULT_LAYOUT.sections, ...(parsed.sections || {}) },
-        images: { ...DEFAULT_LAYOUT.images, ...(parsed.images || {}) },
-        availability: { ...DEFAULT_LAYOUT.availability, ...(parsed.availability || {}) },
-        content: { ...DEFAULT_LAYOUT.content, ...(parsed.content || {}) },
-      };
-    } catch {
-      return DEFAULT_LAYOUT;
-    }
-  });
+  const [config, setConfig] = useState<LayoutConfig>(DEFAULT_LAYOUT);
 
+  // Initial fetch from server
   useEffect(() => {
-    localStorage.setItem('mentor_arena_config', JSON.stringify(config));
-  }, [config]);
+    const fetchConfig = async () => {
+      try {
+        const response = await fetch('/api/config');
+        if (response.ok) {
+          const data = await response.json();
+          if (data && Object.keys(data).length > 0) {
+            setConfig({
+              ...DEFAULT_LAYOUT,
+              ...data,
+              sections: { ...DEFAULT_LAYOUT.sections, ...(data.sections || {}) },
+              images: { ...DEFAULT_LAYOUT.images, ...(data.images || {}) },
+              availability: { ...DEFAULT_LAYOUT.availability, ...(data.availability || {}) },
+              content: { ...DEFAULT_LAYOUT.content, ...(data.content || {}) },
+            });
+          }
+        }
+      } catch (err) {
+        console.error('Failed to fetch config from server');
+      }
+    };
+    fetchConfig();
+  }, []);
+
+  const handleUpdateConfig = async (newConfig: LayoutConfig) => {
+    setConfig(newConfig);
+    try {
+      await fetch('/api/admin/config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newConfig),
+      });
+    } catch (err) {
+      console.error('Failed to save config to server');
+    }
+  };
 
   useEffect(() => {
     // Smooth scroll behavior
@@ -1589,7 +1706,7 @@ export default function App() {
           <AdminPanel 
             onClose={() => setShowAdmin(false)} 
             config={config}
-            onUpdate={setConfig}
+            onUpdate={handleUpdateConfig}
           />
         )}
         {legalType && (

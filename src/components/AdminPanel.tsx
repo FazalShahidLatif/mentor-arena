@@ -8,7 +8,9 @@ import {
   BookOpen, 
   TrendingUp,
   Settings,
-  X
+  X,
+  Github,
+  Mail
 } from 'lucide-react';
 import { AdminView } from './AdminView';
 
@@ -89,8 +91,28 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, config, onUpdat
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [stats, setStats] = useState<{ totalStudents: number; activeCourses: number } | null>(null);
+  const [stats, setStats] = useState<{ totalStudents: number; activeCourses: number; totalLeads?: number } | null>(null);
+  const [leads, setLeads] = useState<any[]>([]);
   const [view, setView] = useState<'dashboard' | 'settings'>('dashboard');
+
+  React.useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      // Validate origin
+      const origin = event.origin;
+      if (!origin.endsWith('.run.app') && !origin.includes('localhost')) {
+        return;
+      }
+
+      if (event.data?.type === 'OAUTH_AUTH_SUCCESS') {
+        setIsLoggedIn(true);
+        fetchStats();
+        fetchLeads();
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -109,6 +131,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, config, onUpdat
       if (data.success) {
         setIsLoggedIn(true);
         fetchStats();
+        fetchLeads();
       } else {
         setError(data.message || 'Invalid password');
       }
@@ -131,10 +154,34 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, config, onUpdat
     }
   };
 
+  const fetchLeads = async () => {
+    try {
+      const response = await fetch('/api/admin/leads');
+      if (response.ok) {
+        const data = await response.json();
+        setLeads(data.reverse()); // Show newest first
+      }
+    } catch (err) {
+      console.error('Failed to fetch leads');
+    }
+  };
+
   const handleLogout = async () => {
     await fetch('/api/admin/logout', { method: 'POST' });
     setIsLoggedIn(false);
     setPassword('');
+  };
+
+  const handleGithubLogin = async () => {
+    try {
+      const response = await fetch('/api/auth/github/url');
+      if (!response.ok) throw new Error('Failed to get auth URL');
+      const { url } = await response.json();
+      
+      window.open(url, 'github_oauth', 'width=600,height=700');
+    } catch (err) {
+      setError('Failed to initiate GitHub login');
+    }
   };
 
   if (!isLoggedIn) {
@@ -188,6 +235,23 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, config, onUpdat
               className="w-full py-4 bg-brand-blue text-white rounded-xl font-bold hover:bg-brand-blue/90 transition-all shadow-lg shadow-brand-blue/20 disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {isLoading ? 'Verifying...' : 'Unlock Dashboard'}
+            </button>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-200"></div>
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-white px-2 text-gray-500">Or continue with</span>
+              </div>
+            </div>
+
+            <button 
+              type="button"
+              onClick={handleGithubLogin}
+              className="w-full py-4 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-all shadow-lg shadow-gray-900/20 flex items-center justify-center gap-2"
+            >
+              <Github size={20} /> Sign in with GitHub
             </button>
             
             <p className="text-center text-xs text-gray-400">
@@ -283,15 +347,15 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, config, onUpdat
               <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center">
-                    <Settings size={24} />
+                    <Mail size={24} />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 font-medium">System Status</p>
-                    <h3 className="text-2xl font-bold text-gray-900">Healthy</h3>
+                    <p className="text-sm text-gray-500 font-medium">Total Leads</p>
+                    <h3 className="text-2xl font-bold text-gray-900">{stats?.totalLeads || 0}</h3>
                   </div>
                 </div>
                 <div className="flex items-center gap-1 text-xs text-brand-blue font-medium">
-                  Node.js Hostinger Active
+                  Real-time tracking active
                 </div>
               </div>
             </div>
@@ -306,21 +370,34 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, config, onUpdat
               <div className="p-8 space-y-8">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="space-y-4">
-                    <h3 className="font-bold text-gray-800">Recent Activity</h3>
-                    <div className="space-y-3">
-                      {[
-                        { action: "New Booking", time: "2 hours ago", student: "Ali Khan" },
-                        { action: "Syllabus Download", time: "5 hours ago", student: "Sara Ahmed" },
-                        { action: "Clarity Call Booked", time: "Yesterday", student: "Zainab Bibi" }
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                    <h3 className="font-bold text-gray-800">Recent Leads</h3>
+                    <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2">
+                      {leads.length > 0 ? leads.map((item, i) => (
+                        <div key={i} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100">
                           <div>
-                            <p className="text-sm font-bold text-gray-800">{item.action}</p>
-                            <p className="text-xs text-gray-500">{item.student}</p>
+                            <p className="text-sm font-bold text-gray-800">
+                              {item.type === 'booking' ? '📅 New Booking' : '📄 Syllabus Download'}
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              {item.name || item.email}
+                            </p>
+                            {item.whatsapp && <p className="text-[10px] text-brand-green font-medium">WA: {item.whatsapp}</p>}
                           </div>
-                          <span className="text-[10px] text-gray-400 font-medium">{item.time}</span>
+                          <div className="text-right">
+                            <span className="text-[10px] text-gray-400 block mb-1">
+                              {new Date(item.timestamp).toLocaleDateString()}
+                            </span>
+                            <span className="text-[10px] text-gray-400">
+                              {new Date(item.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            </span>
+                          </div>
                         </div>
-                      ))}
+                      )) : (
+                        <div className="text-center py-10 text-gray-400">
+                          <Mail className="mx-auto mb-2 opacity-20" size={32} />
+                          <p className="text-sm">No leads captured yet</p>
+                        </div>
+                      )}
                     </div>
                   </div>
 

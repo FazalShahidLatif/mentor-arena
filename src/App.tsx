@@ -678,12 +678,25 @@ const SyllabusDownload = () => {
   return (
     <div className="mt-12 text-center">
       {!showForm ? (
-        <button 
-          onClick={() => setShowForm(true)}
-          className="inline-flex items-center gap-2 px-8 py-4 bg-brand-green text-white rounded-xl font-bold hover:bg-brand-green/90 transition-all shadow-lg shadow-brand-green/20"
-        >
-          <Download size={20} /> Download Full Syllabus (PDF)
-        </button>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button 
+            onClick={() => setShowForm(true)}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white border-2 border-brand-green text-brand-green rounded-xl font-bold hover:bg-brand-green/5 transition-all"
+          >
+            <Download size={20} /> Download PDF Syllabus
+          </button>
+          
+          <a 
+            href="https://mentor-arena-course-outline.vercel.app" 
+            target="_blank" 
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-brand-blue text-white rounded-xl font-bold hover:bg-brand-blue/90 transition-all shadow-xl shadow-brand-blue/20 group"
+          >
+            <ExternalLink size={20} className="group-hover:rotate-12 transition-transform" /> 
+            <span>View Interactive Course Outline</span>
+            <div className="ml-2 px-2 py-0.5 bg-brand-green text-[10px] rounded-full text-white animate-pulse">LIVE</div>
+          </a>
+        </div>
       ) : (
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
@@ -720,8 +733,14 @@ const SyllabusDownload = () => {
 };
 
 const CoursesOffered = ({ paths }: { paths: string[] }) => (
-  <section id="courses" className="py-20 px-4">
-    <div className="max-w-7xl mx-auto">
+  <section id="courses" className="py-20 px-4 relative overflow-hidden">
+    {/* Decorative Live Line (matches Interactive Course Outline aesthetic) */}
+    <div className="absolute left-0 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-brand-green to-transparent opacity-20 hidden lg:block"></div>
+    <div className="absolute left-8 top-1/2 -rotate-90 origin-left text-[10px] font-bold tracking-[0.5rem] uppercase text-brand-green/30 hidden lg:block">
+      Curriculum Framework
+    </div>
+
+    <div className="max-w-7xl mx-auto relative">
       <div className="text-center mb-16">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">Project-Based Skill Paths</h2>
         <p className="text-gray-600">We don’t just teach you how to use software; we teach you how to build a digital business.</p>

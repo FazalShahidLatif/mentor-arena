@@ -272,6 +272,22 @@ async function startServer() {
     res.json([]);
   });
 
+  // Dynamic Sitemap Generator
+  app.get("/sitemap.xml", (req, res) => {
+    const today = new Date().toISOString().split('T')[0];
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://mentorarena.online/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>`;
+    res.header('Content-Type', 'application/xml');
+    res.send(sitemap);
+  });
+
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const { createServer: createViteServer } = await import("vite");

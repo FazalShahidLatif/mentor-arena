@@ -28,29 +28,72 @@
 
     <!-- JSON-LD Schema -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
-      "name": "Mentor Arena",
-      "url": "https://mentorarena.online",
-      "logo": "https://mentorarena.online/logo.png",
-      "description": "1-to-1 and small-batch digital skills mentorship program for students in Pakistan.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Karachi",
-        "addressCountry": "PK"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Mentor Arena",
+        "url": "https://mentorarena.online",
+        "logo": "https://mentorarena.online/logo.png",
+        "description": "1-to-1 and small-batch digital skills mentorship program for students in Pakistan.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Karachi",
+          "addressCountry": "PK"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+92-332-2137898",
+          "contactType": "customer support"
+        },
+        "sameAs": [
+          "https://facebook.com/mentorarena",
+          "https://linkedin.com/company/mentorarena",
+          "https://instagram.com/mentorarena"
+        ]
       },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+92-332-2137898",
-        "contactType": "customer support"
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Full-Stack Web Development Mentorship",
+        "description": "Learn to build modern, responsive websites using React, Node.js, and Tailwind CSS. We focus on clean code and production-ready applications.",
+        "provider": {
+          "@type": "EducationalOrganization",
+          "name": "Mentor Arena",
+          "sameAs": "https://mentorarena.online"
+        }
       },
-      "sameAs": [
-        "https://facebook.com/mentorarena",
-        "https://linkedin.com/company/mentorarena",
-        "https://instagram.com/mentorarena"
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Search Engine Optimization (SEO) Mentorship",
+        "description": "Master the art of ranking websites on Google. Learn keyword research, on-page SEO, technical SEO, and backlink strategies.",
+        "provider": {
+          "@type": "EducationalOrganization",
+          "name": "Mentor Arena",
+          "sameAs": "https://mentorarena.online"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "Is this beginner-friendly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We start from the absolute basics of how the internet works."
+          }
+        }, {
+          "@type": "Question",
+          "name": "Do I need to know coding before starting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. We will teach you everything you need to know from scratch."
+          }
+        }]
+      }
+    ]
     </script>
     <style>
       @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }

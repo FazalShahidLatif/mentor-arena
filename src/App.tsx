@@ -27,7 +27,10 @@ import {
   FileText,
    Linkedin,
   Star,
-  ExternalLink
+  ExternalLink,
+  Facebook,
+  Instagram,
+  Twitter as TwitterIcon
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -85,9 +88,9 @@ const DEFAULT_LAYOUT: LayoutConfig = {
     cta: true,
   },
   images: {
-    mentor: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800&h=800",
-    guestMentor: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800&h=800",
-    caseStudy: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200&h=800",
+    mentor: "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&q=80&w=800&h=800",
+    guestMentor: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800&h=800",
+    caseStudy: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200&h=800",
     heroBg: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=70&w=1920",
     methodVideo: "https://assets.mixkit.co/videos/preview/mixkit-man-working-on-his-laptop-308-large.mp4",
     methodPoster: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200",
@@ -1327,25 +1330,40 @@ const TestimonialsSection = ({ caseStudyImage }: { caseStudyImage?: string }) =>
       <div className="grid md:grid-cols-2 gap-8 mb-16">
         {[
           { 
-            quote: "Before Mentor Arena, I was lost in YouTube tutorials for months. After 8 weeks of 1-to-1 sessions, I built my first custom e-commerce site. Now I am taking on my first freelance clients from the US.",
-            name: "Ahmed R.",
+            quote: "Fazal Sahib's approach is unique. He doesn't just teach code; he teaches you how to think like a product owner. After 12 weeks, I built a custom SaaS MVP that I'm now pitching to clients.",
+            name: "Arsalan Malik",
             city: "Karachi",
-            path: "Web Development"
+            path: "Full-Stack Web Dev",
+            image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200&h=200"
           },
           { 
-            quote: "The SEO mentorship changed how I look at the internet. I went from knowing nothing to ranking my own blog on the first page of Google for three keywords.",
-            name: "Sana K.",
+            quote: "The 1-to-1 mentorship is a game-changer. Awais Ghani's guest sessions on SEO provided insights you can't find in any online course. My project is now ranking on page 1 for targeted keywords.",
+            name: "Mariam Tariq",
             city: "Lahore",
-            path: "SEO Specialist"
+            path: "SEO Specialist",
+            image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200&h=200"
           }
         ].map((t, i) => (
-          <div key={i} className="p-8 bg-gray-50 rounded-[2rem] border border-gray-100 relative">
+          <div key={i} className="p-8 bg-gray-50 rounded-[2rem] border border-gray-100 relative group hover:bg-white hover:shadow-xl transition-all duration-300">
             <MessageSquare className="absolute top-6 right-8 text-brand-blue/10 w-12 h-12" />
-            <p className="text-lg text-gray-700 mb-8 italic leading-relaxed">"{t.quote}"</p>
-            <div>
-              <div className="font-bold text-gray-900">{t.name}</div>
-              <div className="text-sm text-gray-500">{t.city} • {t.path}</div>
+            
+            <div className="flex gap-4 items-center mb-8">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-md bg-gray-200">
+                <img 
+                  src={t.image} 
+                  alt={t.name} 
+                  className="w-full h-full object-cover transition-transform group-hover:scale-110" 
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <div className="font-bold text-gray-900 group-hover:text-brand-blue transition-colors">{t.name}</div>
+                <div className="text-sm text-gray-500 font-medium">{t.city} • {t.path}</div>
+              </div>
             </div>
+
+            <p className="text-lg text-gray-700 italic leading-relaxed relative z-10">"{t.quote}"</p>
           </div>
         ))}
       </div>
@@ -1357,13 +1375,15 @@ const TestimonialsSection = ({ caseStudyImage }: { caseStudyImage?: string }) =>
             <div className="inline-block px-4 py-1 bg-white/10 rounded-full text-xs font-bold mb-6 uppercase tracking-widest">Student Case Study</div>
             <h3 className="text-3xl font-bold mb-6">From Zero to SaaS MVP in 4 Months</h3>
             <p className="text-blue-50 mb-8 leading-relaxed">
-              [Replace with real student story: Example of how a university student from Islamabad went from zero coding knowledge to building a functional SaaS product.]
+              Junaid joined Mentor Arena with limited technical knowledge. Through our 1-to-1 project-based track, he built and deployed a fully functional Sales Dashboard for a local Karachi agency. He now works as a Junior Full-Stack Developer while scaling his own freelance business.
             </p>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center font-bold">JS</div>
+              <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center font-bold overflow-hidden border border-white/20">
+                <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100&h=100" alt="Junaid" className="w-full h-full object-cover" />
+              </div>
               <div>
                 <div className="font-bold">Junaid S.</div>
-                <div className="text-sm text-blue-200">Islamabad • Full-Stack Dev</div>
+                <div className="text-sm text-blue-200">Karachi • Full-Stack Dev</div>
               </div>
             </div>
           </div>
@@ -1503,6 +1523,55 @@ const FAQSection = () => (
   </section>
 );
 
+const MapSection = () => (
+  <section className="py-24 px-4 bg-white border-t border-gray-50">
+    <div className="max-w-7xl mx-auto">
+      <div className="text-center mb-16">
+        <h2 className="text-4xl font-bold text-gray-900 mb-4 tracking-tight">Visit Us in Karachi</h2>
+        <p className="text-lg text-gray-600">While our mentorship is primarily online, we are based in the heart of Karachi.</p>
+      </div>
+      
+      <div className="relative group">
+        {/* Decorative corner accents */}
+        <div className="absolute -top-4 -left-4 w-24 h-24 bg-brand-blue/5 rounded-full blur-2xl group-hover:bg-brand-blue/10 transition-colors"></div>
+        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-brand-green/5 rounded-full blur-2xl group-hover:bg-brand-green/10 transition-colors"></div>
+        
+        <div className="relative bg-white rounded-[3rem] p-3 shadow-2xl border border-gray-100 overflow-hidden group-hover:shadow-brand-blue/5 transition-all duration-500">
+          <div className="aspect-[21/9] min-h-[450px] w-full rounded-[2.5rem] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14479.802035!2d67.0681!3d24.8601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33ee2d80d2105%3A0xe54e24eb3e961962!2sMentor%20Arena!5e0!3m2!1sen!2spk!4v1714332000000!5m2!1sen!2spk"
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Mentor Arena Karachi Location"
+              className="w-full h-full"
+            ></iframe>
+          </div>
+          
+          {/* Floating Address Card */}
+          <div className="absolute bottom-8 left-8 right-8 md:right-auto md:w-80 bg-white/90 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/20">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-brand-blue rounded-xl flex items-center justify-center text-white">
+                <Shield size={20} />
+              </div>
+              <h4 className="font-bold text-gray-900">Karachi HQ</h4>
+            </div>
+            <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+              Serving ambitious students across Pakistan with 1-to-1 digital excellence.
+            </p>
+            <div className="flex items-center gap-2 text-xs font-bold text-brand-blue uppercase tracking-wider">
+              <Clock size={14} /> Open 9:00 AM - 9:00 PM
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 const FinalCTA = () => (
   <section className="py-20 px-4">
     <div className="max-w-5xl mx-auto bg-brand-blue rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden shadow-2xl shadow-brand-blue/20">
@@ -1605,23 +1674,51 @@ const LegalModal = ({ type, onClose }: { type: 'privacy' | 'terms' | 'cookies' |
 const Footer = ({ onOpenLegal }: { onOpenLegal: (type: 'privacy' | 'terms' | 'cookies' | 'refund') => void }) => (
   <footer className="py-12 border-t border-gray-100 px-4">
     <div className="max-w-7xl mx-auto">
-      <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
-        <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-2">
+      <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+        <div className="flex flex-col gap-3 w-full md:w-auto text-center md:text-left">
+          <div className="flex items-center gap-2 justify-center md:justify-start">
             <Shield className="text-brand-blue w-6 h-6" />
-            <span className="text-lg font-bold text-gray-900">Mentor Arena</span>
+            <span className="text-xl font-bold text-gray-900 tracking-tight">Mentor Arena</span>
           </div>
-          <p className="text-xs text-gray-500">Based in Karachi, mentoring students across Pakistan (online only).</p>
+          <p className="text-xs text-gray-500 max-w-sm">Based in Karachi, mentoring students across Pakistan. Transform your career with 1-on-1 digital skills coaching.</p>
+          <p className="text-xs font-bold text-brand-blue mt-1 flex items-center gap-2 justify-center md:justify-start">
+            <MessageSquare size={14} /> {BUSINESS_INFO.phone}
+          </p>
         </div>
-        <div className="flex flex-wrap justify-center gap-6 text-sm font-medium">
-          <button onClick={() => onOpenLegal('privacy')} className="text-gray-500 hover:text-brand-blue transition-colors">Privacy Policy</button>
-          <button onClick={() => onOpenLegal('terms')} className="text-gray-500 hover:text-brand-blue transition-colors">Terms of Service</button>
-          <button onClick={() => onOpenLegal('refund')} className="text-gray-500 hover:text-brand-blue transition-colors">Refund Policy</button>
+
+        <div className="flex flex-col gap-4 w-full md:w-auto text-center md:text-left">
+          <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Legal</h4>
+          <div className="flex flex-col gap-3 text-sm font-medium">
+            <button onClick={() => onOpenLegal('privacy')} className="text-gray-500 hover:text-brand-blue transition-colors text-left w-full md:w-auto">Privacy Policy</button>
+            <button onClick={() => onOpenLegal('terms')} className="text-gray-500 hover:text-brand-blue transition-colors text-left w-full md:w-auto">Terms of Service</button>
+            <button onClick={() => onOpenLegal('refund')} className="text-gray-500 hover:text-brand-blue transition-colors text-left w-full md:w-auto">Refund Policy</button>
+          </div>
         </div>
-        <div className="flex gap-6">
-          <a href="#" className="text-gray-400 hover:text-brand-blue transition-colors">WhatsApp</a>
-          <a href="#" className="text-gray-400 hover:text-brand-blue transition-colors">Facebook</a>
-          <a href="#" className="text-gray-400 hover:text-brand-blue transition-colors">LinkedIn</a>
+
+        <div className="flex flex-col gap-4 w-full md:w-auto text-center md:text-right items-center md:items-end">
+          <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Social Connect</h4>
+          <div className="flex md:flex-col gap-4">
+            {[
+              { Icon: MessageSquare, href: `https://wa.me/${BUSINESS_INFO.phone}`, label: "WhatsApp", color: "text-green-500" },
+              { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61572334738737", label: "Facebook", color: "text-blue-600" },
+              { Icon: Linkedin, href: "https://www.linkedin.com/in/fazal-shahid-mentor/", label: "LinkedIn", color: "text-blue-700" },
+              { Icon: Instagram, href: "https://www.instagram.com/bookmethat/", label: "Instagram", color: "text-pink-600" }
+            ].map((social, i) => (
+              <motion.a
+                key={i}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ y: -4, scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-gray-400 shadow-[0_4px_0_0_rgba(0,0,0,0.05)] border border-gray-100 hover:text-gray-900 transition-all group relative"
+                title={social.label}
+              >
+                <social.Icon size={20} className={`transition-colors group-hover:${social.color}`} />
+                <div className="absolute inset-px rounded-full border border-white/50 pointer-events-none"></div>
+              </motion.a>
+            ))}
+          </div>
         </div>
       </div>
       <div className="text-center text-gray-400 text-xs">
@@ -1699,6 +1796,7 @@ export default function App() {
         {config.sections.about && <AboutMentor image={config.images.mentor} guestImage={config.images.guestMentor} />}
         {config.sections.faq && <FAQSection />}
         {config.sections.cta && <FinalCTA />}
+        <MapSection />
       </main>
 
       <AnimatePresence>

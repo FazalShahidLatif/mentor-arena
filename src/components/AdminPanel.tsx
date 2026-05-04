@@ -82,7 +82,7 @@ const DEFAULT_LAYOUT: LayoutConfig = {
   },
   content: {
     skillPaths: ["Web Development", "UI/UX Design", "Digital Marketing", "Mobile App Dev", "Data Science", "Cloud Computing"],
-    timeSlots: ["Morning (10 AM - 2 PM)", "Evening (6 PM - 10 PM)"]
+    timeSlots: ["Morning Session (11 AM - 6 PM)", "Evening Session (6 PM - 12 AM)"]
   }
 };
 
@@ -97,9 +97,17 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, config, onUpdat
 
   React.useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      // Validate origin
+      // Validate origin - Allow local development, our cloud run domains, and current window origin
       const origin = event.origin;
-      if (!origin.endsWith('.run.app') && !origin.includes('localhost')) {
+      const currentOrigin = window.location.origin;
+      
+      const isAllowedOrigin = 
+        origin.endsWith('.run.app') || 
+        origin.includes('localhost') || 
+        origin === currentOrigin;
+
+      if (!isAllowedOrigin) {
+        console.warn('Blocked message from unauthorized origin:', origin);
         return;
       }
 

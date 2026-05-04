@@ -36,6 +36,52 @@ export const SKILL_PATHS = [
   "Affiliate Marketing",
 ];
 
+export const CURRICULUM_FRAMEWORK = {
+  pillars: [
+    {
+      id: "operator",
+      title: "THE OPERATOR",
+      description: "AI is not a subject to study—it's a tool to amplify your capabilities.",
+      focus: "Productivity & AI Workflows"
+    },
+    {
+      id: "optimization",
+      title: "OPTIMIZATION",
+      description: "A high-value product does not require high initial capital. Leverage AI workflows.",
+      focus: "Value Creation & Efficiency"
+    },
+    {
+      id: "execution",
+      title: "EXECUTION",
+      description: "Speed beats perfection. Learn to prototype rapidly and launch iterative solutions.",
+      focus: "Launch & Iterate"
+    }
+  ],
+  modules: [
+    {
+      id: "01",
+      title: "UNDERSTANDING THE DIGITAL LANDSCAPE",
+      description: "Evolution of learning: From memorization to execution. The rise of AI-powered workflows.",
+      outcome: "Understand why traditional skills alone are no longer enough.",
+      icon: "Globe"
+    },
+    {
+      id: "02",
+      title: "THE AI MINDSET SHIFT",
+      description: "Moving from 'Learner' to 'Operator'. Understanding AI as a tool, not a subject.",
+      outcome: "Adopt the mindset that AI amplifies those who already know how to produce.",
+      icon: "Cpu"
+    },
+    {
+      id: "03",
+      title: "THINKING LIKE A PRODUCER",
+      description: "Adopting a producer mindset. Identifying problems worth solving and building solutions.",
+      outcome: "Transition from consumer to creator.",
+      icon: "Target"
+    }
+  ]
+};
+
 export const COURSE_DETAILS = {
   "Web Development": [
     "HTML5 & Semantic Web",
@@ -88,17 +134,17 @@ export const COURSE_DETAILS = {
 };
 
 export const TIME_SLOTS = [
-  "Clarity Call: 1 PM – 4 PM",
-  "Clarity Call: 8 PM – 10 PM",
-  "Mentorship: 4 PM – 8 PM",
-  "Mentorship: 10 PM – 2 AM (Next Day)"
+  "Clarity Call: 11 AM – 1 PM",
+  "Clarity Call: 6 PM – 8 PM",
+  "Mentorship: 2 PM – 6 PM",
+  "Mentorship: 8 PM – 12 AM"
 ];
 
 export const DAILY_SCHEDULE = {
-  clarityCalls: ["1 PM – 4 PM", "8 PM – 10 PM"],
+  clarityCalls: ["11 AM – 1 PM", "6 PM – 8 PM"],
   mentorshipSessions: [
-    { time: "4 PM – 8 PM", duration: "4 Hours" },
-    { time: "10 PM – 2 AM", duration: "4 Hours", note: "Next Day" }
+    { time: "2 PM – 6 PM", duration: "4 Hours" },
+    { time: "8 PM – 12 AM", duration: "4 Hours" }
   ]
 };
 

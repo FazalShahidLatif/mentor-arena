@@ -108,10 +108,13 @@ async function startServer() {
       return res.status(500).json({ error: "GITHUB_CLIENT_ID not configured" });
     }
 
+    const appUrl = process.env.APP_URL || `${req.protocol}://${req.get('host')}`;
+    const redirectUri = `${appUrl}/api/auth/github/callback`;
+
     const params = new URLSearchParams({
       client_id: clientId,
       scope: "read:user user:email",
-      // Note: redirect_uri is configured in GitHub dashboard
+      redirect_uri: redirectUri
     });
 
     const authUrl = `https://github.com/login/oauth/authorize?${params.toString()}`;

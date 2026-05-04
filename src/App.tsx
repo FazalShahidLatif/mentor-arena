@@ -56,6 +56,8 @@ import {
 } from './constants';
 // import { AdminPanel } from './components/AdminPanel';
 
+const LOGO_SVG = "data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100' height='100' rx='20' fill='%231A4A7C'/%3E%3Cpath d='M30 70V30L50 50L70 30V70' stroke='white' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M46 54L54 46' stroke='%234CAF50' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='50' r='4' fill='%234CAF50'/%3E%3C/svg%3E";
+
 // Lazy load large components for performance
 const AdminPanel = React.lazy(() => import('./components/AdminPanel').then(module => ({ default: module.AdminPanel })));
 
@@ -175,12 +177,12 @@ const ExecutiveFramework = () => (
 );
 
 const AuthoritySyllabus = () => (
-  <section id="curriculum" className="py-24 px-4 bg-gray-950 relative overflow-hidden">
+  <section id="curriculum" className="py-24 px-4 bg-[#0A1118] relative overflow-hidden">
     {/* Background Decorative Elements */}
-    <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-brand-blue/10 to-transparent opacity-50 pointer-events-none"></div>
-    <div className="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-tr from-brand-green/10 to-transparent opacity-50 pointer-events-none"></div>
+    <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-brand-blue/15 to-transparent opacity-50 pointer-events-none"></div>
+    <div className="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-tr from-brand-green/15 to-transparent opacity-50 pointer-events-none"></div>
     
-    <div className="max-w-7xl mx-auto relative">
+    <div className="max-w-7xl mx-auto relative text-white">
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-20">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-green/10 rounded-full border border-brand-green/20 text-brand-green text-[10px] font-bold uppercase tracking-widest mb-6">
@@ -188,7 +190,7 @@ const AuthoritySyllabus = () => (
             Professional Curriculum
           </div>
           <h2 className="text-5xl font-bold text-white mb-4 tracking-tight">The Executive Framework</h2>
-          <p className="text-white/50 text-lg">We don't just teach tools. We build the <span className="text-white font-semibold">Operator Mindset</span> needed to lead in the age of AI.</p>
+          <p className="text-gray-400 text-lg">We don't just teach tools. We build the <span className="text-white font-semibold">Operator Mindset</span> needed to lead in the age of AI.</p>
         </div>
         
         <div className="hidden lg:block h-px flex-1 bg-gradient-to-r from-brand-green/20 to-transparent mx-12 mb-6"></div>
@@ -212,9 +214,14 @@ const AuthoritySyllabus = () => (
           <div className="px-6 py-4">
             <p className="text-white/60 text-sm italic">Want the full 24-module roadmap?</p>
           </div>
-          <button className="bg-brand-green text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 group-hover:shadow-lg shadow-brand-green/20 transition-all">
+          <a 
+            href="https://mentor-arena-course-outline.vercel.app" 
+            target="_blank" 
+            rel="noreferrer"
+            className="bg-brand-green text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 group-hover:shadow-lg shadow-brand-green/20 transition-all"
+          >
             <Download size={20} /> Get Full Syllabus
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -228,8 +235,8 @@ const Navbar = ({ onAdminClick, onLoginClick, onLogout, user }: { onAdminClick: 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <a href="#" className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg shadow-brand-blue/20 overflow-hidden">
-              <img src="input_file_0.png" alt="M" className="w-full h-full object-cover" />
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg shadow-brand-blue/20 overflow-hidden bg-brand-blue">
+              <img src={LOGO_SVG} alt="Mentor Arena Logo" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col -space-y-1">
               <span className="text-xl font-bold text-brand-blue tracking-tighter">Mentor <span className="text-brand-green">Arena</span></span>
@@ -432,7 +439,7 @@ const SyllabusDownload = () => {
         });
       };
       
-      const logoBase64 = await getBase64('input_file_0.png').catch(() => null);
+      const logoBase64 = LOGO_SVG;
       
       const doc = new jsPDF();
     
@@ -1865,12 +1872,20 @@ const Footer = ({ onOpenLegal }: { onOpenLegal: (type: 'privacy' | 'terms' | 'co
       <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
         <div className="flex flex-col gap-3 w-full md:w-auto text-center md:text-left">
           <div className="flex items-center gap-2 justify-center md:justify-start">
-            <img src="input_file_0.png" alt="M" className="w-8 h-8 object-contain" />
+            <img src={LOGO_SVG} alt="Mentor Arena Logo" className="w-8 h-8 object-contain" />
             <span className="text-xl font-bold text-gray-900 tracking-tight">Mentor Arena</span>
           </div>
           <p className="text-xs text-gray-500 max-w-sm">Based in Karachi, mentoring students across Pakistan. Transform your career with 1-on-1 digital skills coaching.</p>
-          <a href="https://saasskul.com" target="_blank" rel="noreferrer" className="mt-4 block hover:opacity-80 transition-opacity">
-            <img src="input_file_1.png" alt="A product of SaaSSkul" className="h-10 w-auto object-contain mx-auto md:mx-0" />
+          <a href="https://saasskul.com" target="_blank" rel="noreferrer" className="mt-4 block transition-all group/badge max-w-fit mx-auto md:mx-0">
+            <div className="flex items-center gap-3 bg-brand-blue/[0.03] rounded-xl px-4 py-3 border border-brand-blue/10 hover:bg-brand-blue/[0.06] transition-all">
+              <div className="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center text-brand-blue group-hover/badge:bg-brand-blue transition-colors group-hover/badge:text-white">
+                <Shield size={18} />
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-[9px] text-gray-400 font-bold uppercase leading-none tracking-wider">A product of</span>
+                <span className="text-sm font-black text-brand-blue leading-tight tracking-tight">SaaSSkul</span>
+              </div>
+            </div>
           </a>
         </div>
 

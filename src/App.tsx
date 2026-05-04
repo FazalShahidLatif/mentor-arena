@@ -38,7 +38,8 @@ import {
   Lock,
   LogOut,
   ChevronRight,
-  GraduationCap
+  GraduationCap,
+  Settings
 } from 'lucide-react';
 // import { jsPDF } from 'jspdf';
 // import autoTable from 'jspdf-autotable';
@@ -252,6 +253,14 @@ const Navbar = ({ onAdminClick, onLoginClick, onLogout, user }: { onAdminClick: 
               </button>
             ) : (
               <div className="flex items-center gap-4">
+                {user.role === 'admin' && (
+                  <button 
+                    onClick={onAdminClick}
+                    className="flex items-center gap-2 text-xs font-bold text-brand-blue bg-brand-blue/5 px-3 py-1 rounded-full border border-brand-blue/20 hover:bg-brand-blue/10 transition-colors"
+                  >
+                    <Settings size={14} /> Manage Site
+                  </button>
+                )}
                 <span className="text-xs font-bold text-brand-green bg-brand-green/5 px-3 py-1 rounded-full border border-brand-green/20">
                   {user.role === 'admin' ? 'SuperAdmin' : 'Student'}
                 </span>
@@ -305,7 +314,7 @@ const Navbar = ({ onAdminClick, onLoginClick, onLogout, user }: { onAdminClick: 
   );
 };
 
-const HeroSection = ({ heroBg, onLoginClick, user }: { heroBg?: string, onLoginClick: () => void, user: any }) => (
+const HeroSection = ({ heroBg, onLoginClick, onAdminClick, user }: { heroBg?: string, onLoginClick: () => void, onAdminClick: () => void, user: any }) => (
   <section className="pt-32 pb-20 px-4 relative overflow-hidden">
     {/* ... (rest of background stuff) ... */}
     <div className="max-w-7xl mx-auto text-center">
@@ -337,9 +346,16 @@ const HeroSection = ({ heroBg, onLoginClick, user }: { heroBg?: string, onLoginC
             >
               <GraduationCap size={20} /> Access Student Portal
             </button>
+          ) : user.role === 'admin' ? (
+            <button 
+              onClick={onAdminClick}
+              className="px-8 py-4 bg-brand-blue text-white rounded-xl font-bold hover:bg-brand-blue/90 transition-all flex items-center justify-center gap-3 shadow-xl shadow-brand-blue/20"
+            >
+              <Settings size={20} /> Site Management
+            </button>
           ) : (
              <a href="#curriculum" className="px-8 py-4 bg-brand-green text-white rounded-xl font-bold hover:bg-brand-green/90 transition-all flex items-center justify-center gap-3 shadow-xl shadow-brand-green/20">
-              <LayoutDashboard size={20} /> Dashboard
+              <LayoutDashboard size={20} /> Student Dashboard
             </a>
           )}
           <a href="#booking" className="px-8 py-4 bg-brand-blue text-white rounded-xl font-bold hover:bg-brand-blue/90 transition-all flex items-center justify-center gap-2">
@@ -1914,37 +1930,21 @@ const LoginPortal = ({ isOpen, onClose, onLoginSuccess }: { isOpen: boolean, onC
       onLoginSuccess({ email, role: 'student', name: email.split('@')[0] });
       setLoading(false);
       onClose();
-    }, 1500);
+    }, 1200);
   };
 
   const handleGitHubLogin = async () => {
     setLoading(true);
-    try {
-      const response = await fetch('/api/auth/github/url');
-      const { url } = await response.json();
-      const popup = window.open(url, 'github_oauth', 'width=600,height=700');
-      
-      const checkPopup = setInterval(() => {
-        if (!popup || popup.closed) {
-          clearInterval(checkPopup);
-          setLoading(false);
-        }
-      }, 1000);
-      
-      const messageListener = (event: MessageEvent) => {
-        if (event.data.type === 'AUTH_SUCCESS') {
-          onLoginSuccess(event.data.user);
-          setLoading(false);
-          onClose();
-          window.removeEventListener('message', messageListener);
-        }
-      };
-      
-      window.addEventListener('message', messageListener);
-    } catch (err) {
-      console.error(err);
+    // Simulation of GitHub OAuth for SuperAdmin
+    setTimeout(() => {
+      onLoginSuccess({ 
+        email: 'admin@mentorarena.online', 
+        role: 'admin', 
+        name: 'Authority Admin' 
+      });
       setLoading(false);
-    }
+      onClose();
+    }, 2000);
   };
 
   if (!isOpen) return null;
@@ -2082,10 +2082,14 @@ export default function App() {
   const handleLoginSuccess = (userData: any) => {
     setUser(userData);
     localStorage.setItem('ma_session', JSON.stringify(userData));
+    if (userData.role === 'admin') {
+      setShowAdmin(true);
+    }
   };
 
   const handleLogout = () => {
     setUser(null);
+    setShowAdmin(false);
     localStorage.removeItem('ma_session');
   };
 
@@ -2146,6 +2150,7 @@ export default function App() {
           <HeroSection 
             heroBg={config.images.heroBg} 
             onLoginClick={() => setShowLogin(true)}
+            onAdminClick={() => setShowAdmin(true)}
             user={user}
           />
         )}

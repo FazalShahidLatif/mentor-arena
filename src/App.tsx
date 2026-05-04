@@ -113,7 +113,7 @@ const Navbar = ({ onAdminClick }: { onAdminClick: () => void }) => {
     <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <a href="#" aria-label="Home" className="flex items-center gap-2 group cursor-pointer">
+          <a href="#" className="flex items-center gap-2 group cursor-pointer">
             <div className="w-10 h-10 bg-brand-blue rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform">
               <Shield className="text-white w-6 h-6" />
             </div>
@@ -128,13 +128,13 @@ const Navbar = ({ onAdminClick }: { onAdminClick: () => void }) => {
             <a href="#method" className="text-gray-600 hover:text-brand-blue transition-colors font-medium">Method</a>
             <a href="#pricing" className="text-gray-600 hover:text-brand-blue transition-colors font-medium">Pricing</a>
             <a href="#booking" className="bg-brand-blue text-white px-6 py-2.5 rounded-full hover:bg-brand-blue/90 transition-all shadow-lg shadow-brand-blue/20 font-bold">Book Now</a>
-            <button onClick={onAdminClick} aria-label="Admin Dashboard" className="text-gray-400 hover:text-brand-blue transition-colors">
+            <button onClick={onAdminClick} className="text-gray-400 hover:text-brand-blue transition-colors">
               <LayoutDashboard size={20} />
             </button>
           </div>
 
           <div className="md:hidden">
-            <button aria-label="Toggle Navigation Menu" onClick={() => setIsOpen(!isOpen)}>
+            <button onClick={() => setIsOpen(!isOpen)}>
               {isOpen ? <X /> : <Menu />}
             </button>
           </div>
@@ -169,7 +169,7 @@ const HeroSection = ({ heroBg }: { heroBg?: string }) => (
       <div className="absolute inset-0 -z-10 opacity-5">
         <img 
           src={heroBg} 
-          alt="Hero background" 
+          alt="" 
           className="w-full h-full object-cover" 
           referrerPolicy="no-referrer" 
           fetchPriority="high"
@@ -1747,7 +1747,6 @@ const Footer = ({ onOpenLegal }: { onOpenLegal: (type: 'privacy' | 'terms' | 'co
                 whileTap={{ scale: 0.95 }}
                 className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-gray-400 shadow-[0_4px_0_0_rgba(0,0,0,0.05)] border border-gray-100 hover:text-gray-900 transition-all group relative"
                 title={social.label}
-                aria-label={social.label}
               >
                 <social.Icon size={20} className={`transition-colors group-hover:${social.color}`} />
                 <div className="absolute inset-px rounded-full border border-white/50 pointer-events-none"></div>

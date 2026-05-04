@@ -111,13 +111,13 @@ const DEFAULT_LAYOUT: LayoutConfig = {
     faq: true,
     cta: true,
   },
-  images: {
-    mentor: "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&q=80&w=800&h=800",
-    guestMentor: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800&h=800",
-    caseStudy: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200&h=800",
-    heroBg: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=70&w=1920",
+    images: {
+    mentor: "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&q=60&w=600&h=600",
+    guestMentor: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=60&w=600&h=600",
+    caseStudy: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=60&w=1000&h=600",
+    heroBg: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=60&w=1280",
     methodVideo: "https://assets.mixkit.co/videos/preview/mixkit-man-working-on-his-laptop-308-large.mp4",
-    methodPoster: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200",
+    methodPoster: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=60&w=1000",
   },
   availability: {
     clarityCalls: [true, true],
@@ -995,11 +995,9 @@ const MethodSection = ({ videoUrl, posterUrl }: { videoUrl?: string, posterUrl?:
                 poster={posterUrl}
                 className="w-full h-full object-cover" 
                 controls 
-                autoPlay 
                 muted 
-                loop 
                 playsInline
-                preload="metadata"
+                preload="none"
               />
             </div>
           ) : (
@@ -1141,12 +1139,14 @@ const HowItWorks = () => (
             alt="Easypaisa" 
             className="h-10 object-contain"
             referrerPolicy="no-referrer"
+            loading="lazy"
           />
           <img 
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/JazzCash_Logo.png/600px-JazzCash_Logo.png" 
             alt="JazzCash" 
             className="h-10 object-contain"
             referrerPolicy="no-referrer"
+            loading="lazy"
           />
         </div>
       </div>
@@ -1486,6 +1486,8 @@ const TestimonialsSection = ({ caseStudyImage }: { caseStudyImage?: string }) =>
                 src="https://www.gstatic.com/images/branding/product/2x/google_24dp.png" 
                 alt="Google" 
                 className="w-6 h-6"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="text-left">
@@ -1574,7 +1576,7 @@ const TestimonialsSection = ({ caseStudyImage }: { caseStudyImage?: string }) =>
             </p>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center font-bold overflow-hidden border border-white/20">
-                <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100&h=100" alt="Junaid" className="w-full h-full object-cover" />
+                <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=60&w=100&h=100" alt="Junaid" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div>
                 <div className="font-bold">Junaid S.</div>

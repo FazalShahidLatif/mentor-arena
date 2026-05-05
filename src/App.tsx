@@ -1310,7 +1310,7 @@ const BookingSection = ({ paths, slots }: { paths: string[], slots: string[] }) 
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href={`https://wa.me/${BUSINESS_INFO.phone.replace(/\s/g, '')}`}
+              href={`https://api.whatsapp.com/send?phone=${BUSINESS_INFO.phone.replace(/\s/g, '')}&text=${encodeURIComponent("Hi Mentor Arena, I just submitted the booking form on your website. Looking forward to connecting!")}`}
               target="_blank"
               rel="noreferrer"
               className="px-6 py-3 bg-brand-green text-white rounded-xl font-bold hover:bg-brand-green/90 transition-all shadow-lg shadow-brand-green/20 flex items-center justify-center gap-2"
@@ -1440,7 +1440,7 @@ const BookingSection = ({ paths, slots }: { paths: string[], slots: string[] }) 
                         className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-blue file:text-white hover:file:bg-brand-blue/90"
                         onChange={(e) => {
                           if (e.target.files && e.target.files[0]) {
-                            const whatsappUrl = `https://wa.me/${BUSINESS_INFO.phone.replace(/\s/g, '')}?text=${encodeURIComponent(`Hi Mentor Arena, I have just uploaded my payment proof for the ${formData.plan} (${formData.path}). Here is my name: ${formData.name}`)}`;
+                            const whatsappUrl = `https://api.whatsapp.com/send?phone=${BUSINESS_INFO.phone.replace(/\s/g, '')}&text=${encodeURIComponent(`Hi Mentor Arena, I have just uploaded my payment proof for the ${formData.plan} (${formData.path}). Here is my name: ${formData.name}`)}`;
                             window.open(whatsappUrl, '_blank');
                           }
                         }}
@@ -1945,7 +1945,7 @@ const Footer = ({ onOpenLegal }: { onOpenLegal: (type: 'privacy' | 'terms' | 'co
           <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Social Connect</h4>
           <div className="flex md:flex-col gap-4">
             {[
-              { Icon: MessageSquare, href: `https://wa.me/${BUSINESS_INFO.phone}`, label: "WhatsApp Chat", color: "text-green-500" },
+              { Icon: MessageSquare, href: `https://api.whatsapp.com/send?phone=${BUSINESS_INFO.phone.replace(/\s/g, '')}`, label: "WhatsApp Chat", color: "text-green-500" },
               { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61572334738737", label: "Facebook Page", color: "text-blue-600" },
               { Icon: Linkedin, href: "https://www.linkedin.com/in/fazal-shahid-mentor/", label: "LinkedIn Profile", color: "text-blue-700" },
               { Icon: Instagram, href: "https://www.instagram.com/bookmethat/", label: "Instagram Profile", color: "text-pink-600" },

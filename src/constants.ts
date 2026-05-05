@@ -1,6 +1,6 @@
 export const BUSINESS_INFO = {
   name: "Mentor Arena",
-  phone: "03322137898",
+  phone: "923322137898",
   accountHolder: "Fazal Shahid Latif",
   paymentMethods: ["Easypaisa", "JazzCash"],
   adminEmail: "support@mentorarena.online",

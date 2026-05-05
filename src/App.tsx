@@ -240,7 +240,7 @@ const Navbar = ({ onAdminClick, onLoginClick, onLogout, user }: { onAdminClick: 
             </div>
             <div className="flex flex-col -space-y-1">
               <span className="text-xl font-bold text-brand-blue tracking-tighter whitespace-nowrap">Mentor <span className="text-brand-green">Arena</span></span>
-              <span className="text-[10px] text-gray-500 font-medium tracking-widest uppercase whitespace-nowrap">Executive AI Academy</span>
+              <span className="text-[10px] text-gray-600 font-bold tracking-widest uppercase whitespace-nowrap">Executive AI Academy</span>
             </div>
           </a>
           
@@ -343,9 +343,9 @@ const HeroSection = ({ heroBg, onLoginClick, onAdminClick, user }: { heroBg?: st
           transition={{ delay: 0.2 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-8"
         >
-          <div className="flex items-center gap-1 bg-yellow-50/50 px-3 py-1 rounded-full border border-yellow-100/50">
+          <div className="flex items-center gap-1 bg-yellow-50/50 px-3 py-1 rounded-full border border-yellow-100/50" aria-label="4.8 out of 5 stars based on verified reviews">
             {[...Array(5)].map((_, i) => (
-              <Star key={i} size={14} className={`fill-yellow-400 ${i < 4 ? 'text-yellow-400' : 'text-yellow-400/30'}`} />
+              <Star key={i} size={14} aria-hidden="true" className={`fill-yellow-400 ${i < 4 ? 'text-yellow-400' : 'text-yellow-400/30'}`} />
             ))}
             <span className="text-xs font-bold text-yellow-700 ml-1">4.8</span>
           </div>
@@ -379,13 +379,14 @@ const HeroSection = ({ heroBg, onLoginClick, onAdminClick, user }: { heroBg?: st
             Master Web Development, SEO, and Digital Marketing
           </span>
         </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-lg text-gray-700 max-w-2xl mx-auto mb-10 leading-relaxed">
           Stop watching endless tutorials that lead nowhere. Get personalized, project-based coaching to build a career you own.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           {!user ? (
             <button 
               onClick={onLoginClick}
+              aria-label="Access Student Portal"
               className="px-8 py-4 bg-brand-green text-white rounded-xl font-bold hover:bg-brand-green/90 transition-all flex items-center justify-center gap-3 shadow-xl shadow-brand-green/20"
             >
               <GraduationCap size={20} /> Access Student Portal
@@ -1948,7 +1949,7 @@ const Footer = ({ onOpenLegal }: { onOpenLegal: (type: 'privacy' | 'terms' | 'co
                 <Shield size={18} />
               </div>
               <div className="flex flex-col text-left">
-                <span className="text-[9px] text-gray-400 font-bold uppercase leading-none tracking-wider">A product of</span>
+                <span className="text-[9px] text-gray-600 font-bold uppercase leading-none tracking-wider">A product of</span>
                 <span className="text-sm font-black text-brand-blue leading-tight tracking-tight">SaaSSkul</span>
               </div>
             </div>
@@ -1958,9 +1959,9 @@ const Footer = ({ onOpenLegal }: { onOpenLegal: (type: 'privacy' | 'terms' | 'co
         <div className="flex flex-col gap-4 w-full md:w-auto text-center md:text-left">
           <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Legal</h4>
           <div className="flex flex-col gap-3 text-sm font-medium">
-            <button onClick={() => onOpenLegal('privacy')} className="text-gray-500 hover:text-brand-blue transition-colors text-left w-full md:w-auto">Privacy Policy</button>
-            <button onClick={() => onOpenLegal('terms')} className="text-gray-500 hover:text-brand-blue transition-colors text-left w-full md:w-auto">Terms of Service</button>
-            <button onClick={() => onOpenLegal('refund')} className="text-gray-500 hover:text-brand-blue transition-colors text-left w-full md:w-auto">Refund Policy</button>
+            <button onClick={() => onOpenLegal('privacy')} className="text-gray-600 hover:text-brand-blue transition-colors text-left w-full md:w-auto" aria-label="View Privacy Policy">Privacy Policy</button>
+            <button onClick={() => onOpenLegal('terms')} className="text-gray-600 hover:text-brand-blue transition-colors text-left w-full md:w-auto" aria-label="View Terms of Service">Terms of Service</button>
+            <button onClick={() => onOpenLegal('refund')} className="text-gray-600 hover:text-brand-blue transition-colors text-left w-full md:w-auto" aria-label="View Refund Policy">Refund Policy</button>
           </div>
         </div>
 
@@ -1992,7 +1993,7 @@ const Footer = ({ onOpenLegal }: { onOpenLegal: (type: 'privacy' | 'terms' | 'co
           </div>
         </div>
       </div>
-      <div className="text-center text-gray-400 text-xs">
+      <div className="text-center text-gray-600 text-xs">
         © {new Date().getFullYear()} Mentor Arena. All rights reserved. Built for Pakistan.
       </div>
     </div>

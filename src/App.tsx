@@ -357,9 +357,10 @@ const HeroSection = ({ heroBg, onLoginClick, onAdminClick, user }: { heroBg?: st
             className="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-brand-blue transition-all group bg-white/50 px-3 py-1 rounded-full border border-gray-100 hover:border-brand-blue/20 hover:shadow-sm"
           >
             <img 
-              src="https://www.gstatic.com/images/branding/product/2x/google_24dp.png" 
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
               alt="Google" 
               className="w-4 h-4 grayscale group-hover:grayscale-0 transition-all"
+              referrerPolicy="no-referrer"
             />
             <span className="whitespace-nowrap uppercase tracking-wider">13+ Verified Reviews</span>
             <ExternalLink size={10} className="opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -1165,21 +1166,13 @@ const HowItWorks = () => (
       </div>
       <div className="mt-16 p-8 bg-white rounded-3xl border border-gray-100 text-center max-w-2xl mx-auto">
         <p className="text-gray-600 mb-6">Easypaisa and JazzCash are our standard payment methods. All payment details and schedules are double-confirmed over WhatsApp for your peace of mind.</p>
-        <div className="flex justify-center items-center gap-10 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Easypaisa_logo.png/250px-Easypaisa_logo.png" 
-            alt="Easypaisa" 
-            className="h-10 object-contain"
-            referrerPolicy="no-referrer"
-            loading="lazy"
-          />
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/JazzCash_Logo.png/600px-JazzCash_Logo.png" 
-            alt="JazzCash" 
-            className="h-10 object-contain"
-            referrerPolicy="no-referrer"
-            loading="lazy"
-          />
+        <div className="flex justify-center items-center gap-10 opacity-70 transition-all duration-500">
+          <div className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default">
+            <span className="text-sm font-black text-gray-400 tracking-tighter">easy<span className="text-brand-green">paisa</span></span>
+          </div>
+          <div className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default">
+            <span className="text-sm font-black text-gray-400 tracking-tighter">Jazz<span className="text-red-600">Cash</span></span>
+          </div>
         </div>
       </div>
     </div>
@@ -1428,9 +1421,9 @@ const BookingSection = ({ paths, slots }: { paths: string[], slots: string[] }) 
                   <p className="text-sm text-brand-blue/80 mb-4 leading-relaxed flex items-center flex-wrap gap-2">
                     Please send the fee to <strong>{BUSINESS_INFO.phone}</strong> ({BUSINESS_INFO.accountHolder}) via:
                     <span className="inline-flex items-center gap-3 bg-white/50 px-3 py-1 rounded-full border border-brand-blue/10">
-                      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Easypaisa_logo.png/250px-Easypaisa_logo.png" alt="Easypaisa" className="h-4 object-contain" referrerPolicy="no-referrer" />
+                      <span className="text-[10px] font-bold text-gray-400 tracking-tighter uppercase">Easypaisa</span>
                       <span className="text-[10px] font-bold opacity-30">|</span>
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/JazzCash_Logo.png/600px-JazzCash_Logo.png" alt="JazzCash" className="h-4 object-contain" referrerPolicy="no-referrer" />
+                      <span className="text-[10px] font-bold text-gray-400 tracking-tighter uppercase">JazzCash</span>
                     </span>
                   </p>
                   <div className="space-y-4">
@@ -1515,9 +1508,10 @@ const TestimonialsSection = ({ caseStudyImage }: { caseStudyImage?: string }) =>
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center border border-gray-100">
               <img 
-                src="https://www.gstatic.com/images/branding/product/2x/google_24dp.png" 
+                src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
                 alt="Google" 
                 className="w-6 h-6"
+                referrerPolicy="no-referrer"
                 loading="lazy"
                 decoding="async"
               />

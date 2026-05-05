@@ -339,26 +339,28 @@ const HeroSection = ({ heroBg, onLoginClick, onAdminClick, user }: { heroBg?: st
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="flex items-center justify-center gap-3 mb-8"
+          className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-8"
         >
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 bg-yellow-50/50 px-3 py-1 rounded-full border border-yellow-100/50">
             {[...Array(5)].map((_, i) => (
               <Star key={i} size={14} className={`fill-yellow-400 ${i < 4 ? 'text-yellow-400' : 'text-yellow-400/30'}`} />
             ))}
+            <span className="text-xs font-bold text-yellow-700 ml-1">4.8</span>
           </div>
+          
           <a 
             href="https://www.google.com/search?q=Mentor+Arena+Karachi+Reviews" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-brand-blue transition-colors group"
+            className="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-brand-blue transition-all group bg-white/50 px-3 py-1 rounded-full border border-gray-100 hover:border-brand-blue/20 hover:shadow-sm"
           >
             <img 
               src="https://www.gstatic.com/images/branding/product/2x/google_24dp.png" 
               alt="Google" 
               className="w-4 h-4 grayscale group-hover:grayscale-0 transition-all"
             />
-            4.8/5 RATING • 13+ VERIFIED REVIEWS
-            <ExternalLink size={10} />
+            <span className="whitespace-nowrap uppercase tracking-wider">13+ Verified Reviews</span>
+            <ExternalLink size={10} className="opacity-50 group-hover:opacity-100 transition-opacity" />
           </a>
         </motion.div>
         

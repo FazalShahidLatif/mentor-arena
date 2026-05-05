@@ -138,7 +138,7 @@ const CurriculumModule = ({ id, title, description, outcome, icon: IconName }: a
     <div className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all group">
       <div className="flex items-start gap-6">
         <div className="flex flex-col items-center gap-2">
-          <span className="text-white/20 font-mono text-xs font-bold uppercase tracking-widest">{id}</span>
+          <span className="text-white/40 font-mono text-[10px] font-bold uppercase tracking-widest">{id}</span>
           <div className="w-px h-12 bg-gradient-to-b from-brand-green to-transparent opacity-30"></div>
         </div>
         <div className="flex-1">
@@ -148,9 +148,9 @@ const CurriculumModule = ({ id, title, description, outcome, icon: IconName }: a
             </div>
             <h4 className="text-xl font-bold text-white tracking-tight">{title}</h4>
           </div>
-          <p className="text-white/60 mb-6 text-sm leading-relaxed">{description}</p>
+          <p className="text-white/70 mb-6 text-sm leading-relaxed">{description}</p>
           <div className="pt-6 border-t border-white/5">
-            <span className="text-[10px] font-bold text-brand-green uppercase tracking-widest block mb-2 opacity-50">Outcome</span>
+            <span className="text-[10px] font-bold text-brand-green uppercase tracking-widest block mb-2 opacity-70">Outcome</span>
             <p className="text-white font-medium text-sm italic">"{outcome}"</p>
           </div>
         </div>
@@ -169,7 +169,7 @@ const ExecutiveFramework = () => (
             {pillar.focus}
           </span>
           <h3 className="text-3xl font-bold text-white mb-4 tracking-tighter">{pillar.title}</h3>
-          <p className="text-white/40 text-sm leading-relaxed">{pillar.description}</p>
+          <p className="text-white/50 text-sm leading-relaxed">{pillar.description}</p>
         </div>
       </div>
     ))}
@@ -190,7 +190,7 @@ const AuthoritySyllabus = () => (
             Professional Curriculum
           </div>
           <h2 className="text-5xl font-bold text-white mb-4 tracking-tight">The Executive Framework</h2>
-          <p className="text-gray-400 text-lg">We don't just teach tools. We build the <span className="text-white font-semibold">Operator Mindset</span> needed to lead in the age of AI.</p>
+          <p className="text-gray-300 text-lg">We don't just teach tools. We build the <span className="text-white font-semibold">Operator Mindset</span> needed to lead in the age of AI.</p>
         </div>
         
         <div className="hidden lg:block h-px flex-1 bg-gradient-to-r from-brand-green/20 to-transparent mx-12 mb-6"></div>
@@ -199,7 +199,7 @@ const AuthoritySyllabus = () => (
       <ExecutiveFramework />
 
       <div className="mb-12 flex items-center gap-4">
-        <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.5rem]">Deep Dive Modules</h3>
+        <h3 className="text-[10px] font-bold text-white/50 uppercase tracking-[0.5rem]">Deep Dive Modules</h3>
         <div className="h-px flex-1 bg-white/10"></div>
       </div>
 
@@ -240,7 +240,7 @@ const Navbar = ({ onAdminClick, onLoginClick, onLogout, user }: { onAdminClick: 
             </div>
             <div className="flex flex-col -space-y-1">
               <span className="text-xl font-bold text-brand-blue tracking-tighter whitespace-nowrap">Mentor <span className="text-brand-green">Arena</span></span>
-              <span className="text-[10px] text-gray-400 font-medium tracking-widest uppercase whitespace-nowrap">Executive AI Academy</span>
+              <span className="text-[10px] text-gray-500 font-medium tracking-widest uppercase whitespace-nowrap">Executive AI Academy</span>
             </div>
           </a>
           
@@ -306,9 +306,9 @@ const Navbar = ({ onAdminClick, onLoginClick, onLogout, user }: { onAdminClick: 
             className="md:hidden bg-white border-b border-gray-100 overflow-hidden"
           >
             <div className="px-6 pt-2 pb-8 space-y-4">
-              <a href="#curriculum" onClick={() => setIsOpen(false)} className="block py-2 text-gray-600 font-medium">Curriculum</a>
-              <a href="#courses" onClick={() => setIsOpen(false)} className="block py-2 text-gray-600 font-medium">Skill Paths</a>
-              <a href="#pricing" onClick={() => setIsOpen(false)} className="block py-2 text-gray-600 font-medium">Pricing</a>
+              <a href="#curriculum" onClick={() => setIsOpen(false)} className="block py-2 text-gray-700 font-medium">Curriculum</a>
+              <a href="#courses" onClick={() => setIsOpen(false)} className="block py-2 text-gray-700 font-medium">Skill Paths</a>
+              <a href="#pricing" onClick={() => setIsOpen(false)} className="block py-2 text-gray-700 font-medium">Pricing</a>
               {!user ? (
                 <button onClick={() => { setIsOpen(false); onLoginClick(); }} className="block w-full text-left py-2 text-brand-blue font-bold">Student Login</button>
               ) : (
@@ -354,16 +354,20 @@ const HeroSection = ({ heroBg, onLoginClick, onAdminClick, user }: { heroBg?: st
             href="https://www.google.com/search?q=Mentor+Arena+Karachi+Reviews" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-brand-blue transition-all group bg-white/50 px-3 py-1 rounded-full border border-gray-100 hover:border-brand-blue/20 hover:shadow-sm"
+            className="flex items-center gap-2 text-xs font-bold text-gray-600 hover:text-brand-blue transition-all group bg-white/50 px-3 py-1 rounded-full border border-gray-100 hover:border-brand-blue/20 hover:shadow-sm"
           >
             <img 
               src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
               alt="Google" 
+              width="16"
+              height="16"
               className="w-4 h-4 grayscale group-hover:grayscale-0 transition-all"
               referrerPolicy="no-referrer"
+              loading="lazy"
+              decoding="async"
             />
             <span className="whitespace-nowrap uppercase tracking-wider">13+ Verified Reviews</span>
-            <ExternalLink size={10} className="opacity-50 group-hover:opacity-100 transition-opacity" />
+            <ExternalLink size={12} className="opacity-50 group-hover:opacity-100 transition-opacity" />
           </a>
         </motion.div>
         
@@ -412,7 +416,7 @@ const WhoThisIsFor = () => (
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-16">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">Who This Is For</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">Mentor Arena is designed for ambitious Pakistanis who have the "raw power" but need a clear channel to succeed.</p>
+        <p className="text-gray-700 max-w-2xl mx-auto">Mentor Arena is designed for ambitious Pakistanis who have the "raw power" but need a clear channel to succeed.</p>
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
@@ -424,7 +428,7 @@ const WhoThisIsFor = () => (
           <div key={i} className="floating-card p-8">
             <item.icon className="text-brand-blue mb-6 w-10 h-10" />
             <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-            <p className="text-gray-600 leading-relaxed text-sm">{item.desc}</p>
+            <p className="text-gray-700 leading-relaxed text-sm">{item.desc}</p>
           </div>
         ))}
       </div>
@@ -436,6 +440,7 @@ const SyllabusDownload = () => {
   const [email, setEmail] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [error, setError] = useState('');
 
   const saveLead = async (data: any) => {
     try {
@@ -450,8 +455,9 @@ const SyllabusDownload = () => {
   };
 
   const generatePDF = async () => {
+    setError('');
     if (!email || !email.includes('@')) {
-      alert('Please enter a valid email address.');
+      setError('Please enter a valid email address.');
       return;
     }
 
@@ -858,11 +864,13 @@ const SyllabusDownload = () => {
       doc.save('Mentor-Arena-Syllabus.pdf');
     } catch (error) {
       console.error('PDF Generation Error:', error);
-      alert('Failed to generate PDF. Please try again.');
+      setError('Failed to generate PDF. Please try again.');
     } finally {
       setIsGenerating(false);
-      setShowForm(false);
-      setEmail('');
+      if (!error) {
+        setShowForm(false);
+        setEmail('');
+      }
     }
     
     // Save lead
@@ -898,6 +906,7 @@ const SyllabusDownload = () => {
           className="max-w-md mx-auto bg-white p-6 rounded-2xl border border-brand-blue/10 shadow-xl"
         >
           <h4 className="font-bold text-gray-900 mb-4">Enter your email to download</h4>
+          {error && <p className="text-red-500 text-xs mb-4 p-2 bg-red-50 rounded-lg">{error}</p>}
           <div className="flex gap-2">
             <input 
               type="email" 
@@ -1510,6 +1519,8 @@ const TestimonialsSection = ({ caseStudyImage }: { caseStudyImage?: string }) =>
               <img 
                 src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
                 alt="Google" 
+                width="24"
+                height="24"
                 className="w-6 h-6"
                 referrerPolicy="no-referrer"
                 loading="lazy"
@@ -1527,7 +1538,7 @@ const TestimonialsSection = ({ caseStudyImage }: { caseStudyImage?: string }) =>
           </div>
           
           <div className="max-w-2xl mx-auto">
-            <p className="text-gray-600 leading-relaxed italic">
+            <p className="text-gray-700 leading-relaxed italic">
               "Mentor Arena holds a top-tier 4.8-star rating with verified reviews. Our commitment to 1-to-1 practical mentorship ensures every student gets the attention they deserve."
             </p>
           </div>
@@ -1542,7 +1553,7 @@ const TestimonialsSection = ({ caseStudyImage }: { caseStudyImage?: string }) =>
               Check Live Google Reviews
               <ExternalLink size={16} />
             </a>
-            <div className="px-6 py-3 bg-white border border-gray-100 rounded-full text-sm font-semibold text-gray-500 flex items-center gap-2">
+            <div className="px-6 py-3 bg-white border border-gray-100 rounded-full text-sm font-semibold text-gray-600 flex items-center gap-2">
               <CheckCircle size={16} className="text-brand-green" />
               Verified via Google Business
             </div>
@@ -1575,18 +1586,21 @@ const TestimonialsSection = ({ caseStudyImage }: { caseStudyImage?: string }) =>
                 <img 
                   src={t.image} 
                   alt={t.name} 
+                  width="64"
+                  height="64"
                   className="w-full h-full object-cover transition-transform group-hover:scale-110" 
                   referrerPolicy="no-referrer"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div>
                 <div className="font-bold text-gray-900 group-hover:text-brand-blue transition-colors">{t.name}</div>
-                <div className="text-sm text-gray-500 font-medium">{t.city} • {t.path}</div>
+                <div className="text-sm text-gray-600 font-medium">{t.city} • {t.path}</div>
               </div>
             </div>
 
-            <p className="text-lg text-gray-700 italic leading-relaxed relative z-10">"{t.quote}"</p>
+            <p className="text-lg text-gray-800 italic leading-relaxed relative z-10">"{t.quote}"</p>
           </div>
         ))}
       </div>
@@ -1670,6 +1684,8 @@ const AboutMentor = ({ image, guestImage }: { image: string, guestImage?: string
             <img 
               src={image} 
               alt="Fazal Shahid Latif - Lead Mentor" 
+              width="600"
+              height="750"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
               loading="lazy"
@@ -1688,6 +1704,8 @@ const AboutMentor = ({ image, guestImage }: { image: string, guestImage?: string
               <img 
                 src={guestImage || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800&h=800"} 
                 alt="Awais Ghani - Guest Mentor" 
+                width="400"
+                height="400"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
                 loading="lazy"
@@ -1828,9 +1846,10 @@ const FinalCTA = () => (
 const ChatbotLauncher = () => (
   <div className="fixed bottom-6 right-6 z-50">
     <button 
-      onClick={() => window.open(`https://wa.me/${BUSINESS_INFO.phone.replace(/\s/g, '')}`, '_blank')}
-      className="w-14 h-14 bg-brand-green text-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform active:scale-95 cursor-pointer"
+      onClick={() => window.open(`https://api.whatsapp.com/send?phone=${BUSINESS_INFO.phone.replace(/\s/g, '')}`, '_blank')}
+      className="w-14 h-14 bg-brand-green text-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform active:scale-95 cursor-pointer focus:ring-4 focus:ring-brand-green/20 outline-none"
       title="Chat with us on WhatsApp"
+      aria-label="Chat with us on WhatsApp"
     >
       <MessageSquare />
     </button>
@@ -1906,15 +1925,23 @@ const LegalModal = ({ type, onClose }: { type: 'privacy' | 'terms' | 'cookies' |
 };
 
 const Footer = ({ onOpenLegal }: { onOpenLegal: (type: 'privacy' | 'terms' | 'cookies' | 'refund') => void }) => (
-  <footer className="py-12 border-t border-gray-100 px-4">
+  <footer className="py-12 border-t border-gray-100 px-4 bg-gray-50/30">
     <div className="max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
         <div className="flex flex-col gap-3 w-full md:w-auto text-center md:text-left">
           <div className="flex items-center gap-2 justify-center md:justify-start">
-            <img src={LOGO_SVG} alt="Mentor Arena Logo" className="w-8 h-8 object-contain" />
+            <img 
+              src={LOGO_SVG} 
+              alt="Mentor Arena Logo" 
+              width="32"
+              height="32"
+              className="w-8 h-8 object-contain" 
+              loading="lazy"
+              decoding="async"
+            />
             <span className="text-xl font-bold text-gray-900 tracking-tight">Mentor Arena</span>
           </div>
-          <p className="text-xs text-gray-500 max-w-sm">Based in Karachi, mentoring students across Pakistan. Transform your career with 1-on-1 digital skills coaching.</p>
+          <p className="text-xs text-gray-600 max-w-sm">Based in Karachi, mentoring students across Pakistan. Transform your career with 1-on-1 digital skills coaching.</p>
           <a href="https://saasskul.com" target="_blank" rel="noreferrer" className="mt-4 block transition-all group/badge max-w-fit mx-auto md:mx-0">
             <div className="flex items-center gap-3 bg-brand-blue/[0.03] rounded-xl px-4 py-3 border border-brand-blue/10 hover:bg-brand-blue/[0.06] transition-all">
               <div className="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center text-brand-blue group-hover/badge:bg-brand-blue transition-colors group-hover/badge:text-white">
@@ -1941,11 +1968,11 @@ const Footer = ({ onOpenLegal }: { onOpenLegal: (type: 'privacy' | 'terms' | 'co
           <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Social Connect</h4>
           <div className="flex md:flex-col gap-4">
             {[
-              { Icon: MessageSquare, href: `https://api.whatsapp.com/send?phone=${BUSINESS_INFO.phone.replace(/\s/g, '')}`, label: "WhatsApp Chat", color: "text-green-500" },
-              { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61572334738737", label: "Facebook Page", color: "text-blue-600" },
-              { Icon: Linkedin, href: "https://www.linkedin.com/in/fazal-shahid-mentor/", label: "LinkedIn Profile", color: "text-blue-700" },
-              { Icon: Instagram, href: "https://www.instagram.com/bookmethat/", label: "Instagram Profile", color: "text-pink-600" },
-              { Icon: Star, href: "https://www.google.com/search?q=Mentor+Arena+Karachi+Reviews", label: "Google Reviews", color: "text-yellow-500" }
+              { Icon: MessageSquare, href: `https://api.whatsapp.com/send?phone=${BUSINESS_INFO.phone.replace(/\s/g, '')}`, label: "WhatsApp Chat", color: "hover:text-green-500" },
+              { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61572334738737", label: "Facebook Page", color: "hover:text-blue-600" },
+              { Icon: Linkedin, href: "https://www.linkedin.com/in/fazal-shahid-mentor/", label: "LinkedIn Profile", color: "hover:text-blue-700" },
+              { Icon: Instagram, href: "https://www.instagram.com/bookmethat/", label: "Instagram Profile", color: "hover:text-pink-600" },
+              { Icon: Star, href: "https://www.google.com/search?q=Mentor+Arena+Karachi+Reviews", label: "Google Reviews", color: "hover:text-yellow-500" }
             ].map((social, i) => (
               <motion.a
                 key={i}
@@ -1955,10 +1982,10 @@ const Footer = ({ onOpenLegal }: { onOpenLegal: (type: 'privacy' | 'terms' | 'co
                 aria-label={social.label}
                 whileHover={{ y: -4, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-gray-400 shadow-[0_4px_0_0_rgba(0,0,0,0.05)] border border-gray-100 hover:text-gray-900 transition-all group relative"
+                className={`w-11 h-11 rounded-full bg-white flex items-center justify-center text-gray-400 shadow-[0_4px_0_0_rgba(0,0,0,0.05)] border border-gray-100 ${social.color} transition-all group relative`}
                 title={social.label}
               >
-                <social.Icon size={20} className={`transition-colors group-hover:${social.color}`} />
+                <social.Icon size={20} className="transition-colors" />
                 <div className="absolute inset-px rounded-full border border-white/50 pointer-events-none"></div>
               </motion.a>
             ))}
@@ -2050,7 +2077,7 @@ const LoginPortal = ({ isOpen, onClose, onLoginSuccess }: { isOpen: boolean, onC
             <h2 className="text-3xl font-black text-gray-900 mb-2">
               {activeTab === 'student' ? 'Student Portal' : 'Admin Authority'}
             </h2>
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-600 text-sm">
               {activeTab === 'student' 
                 ? 'Welcome back! Ready to continue your project?' 
                 : 'Secure entry for Mentor Arena content managers.'}
@@ -2060,7 +2087,7 @@ const LoginPortal = ({ isOpen, onClose, onLoginSuccess }: { isOpen: boolean, onC
           {activeTab === 'student' ? (
             <form onSubmit={handleManualLogin} className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 px-1">Email Address</label>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 px-1">Email Address</label>
                 <input 
                   type="email" 
                   value={email}
@@ -2071,7 +2098,7 @@ const LoginPortal = ({ isOpen, onClose, onLoginSuccess }: { isOpen: boolean, onC
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 px-1">Password</label>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 px-1">Password</label>
                 <input 
                   type="password" 
                   value={password}

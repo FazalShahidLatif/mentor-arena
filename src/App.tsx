@@ -234,20 +234,22 @@ const Navbar = ({ onAdminClick, onLoginClick, onLogout, user }: { onAdminClick: 
     <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
-          <a href="/" className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg shadow-brand-blue/20 overflow-hidden bg-brand-blue">
+          <a href="/" className="flex items-center gap-2 group cursor-pointer mr-8">
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg shadow-brand-blue/20 overflow-hidden bg-brand-blue shrink-0">
               <img src={LOGO_SVG} alt="Mentor Arena Logo" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col -space-y-1">
-              <span className="text-xl font-bold text-brand-blue tracking-tighter">Mentor <span className="text-brand-green">Arena</span></span>
-              <span className="text-[10px] text-gray-400 font-medium tracking-widest uppercase">Executive AI Academy</span>
+              <span className="text-xl font-bold text-brand-blue tracking-tighter whitespace-nowrap">Mentor <span className="text-brand-green">Arena</span></span>
+              <span className="text-[10px] text-gray-400 font-medium tracking-widest uppercase whitespace-nowrap">Executive AI Academy</span>
             </div>
           </a>
           
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#curriculum" className="text-gray-600 hover:text-brand-blue transition-colors font-medium text-sm">Curriculum</a>
-            <a href="#courses" className="text-gray-600 hover:text-brand-blue transition-colors font-medium text-sm">Mentorship Paths</a>
-            <a href="#pricing" className="text-gray-600 hover:text-brand-blue transition-colors font-medium text-sm">Plans & Pricing</a>
+          <div className="hidden md:flex items-center gap-8 ml-auto">
+            <div className="flex items-center gap-8 mr-4">
+              <a href="#curriculum" className="text-gray-600 hover:text-brand-blue transition-colors font-medium text-sm">Curriculum</a>
+              <a href="#courses" className="text-gray-600 hover:text-brand-blue transition-colors font-medium text-sm">Mentorship Paths</a>
+              <a href="#pricing" className="text-gray-600 hover:text-brand-blue transition-colors font-medium text-sm">Plans & Pricing</a>
+            </div>
             
             <div className="h-4 w-px bg-gray-200"></div>
 

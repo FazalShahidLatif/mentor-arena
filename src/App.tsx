@@ -220,7 +220,7 @@ const AuthoritySyllabus = () => (
             rel="noreferrer"
             className="bg-brand-green text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 group-hover:shadow-lg shadow-brand-green/20 transition-all"
           >
-            <Download size={20} /> Get Full Syllabus
+            <Download size={20} /> Download Full 24-Module Syllabus
           </a>
         </div>
       </div>
@@ -234,7 +234,7 @@ const Navbar = ({ onAdminClick, onLoginClick, onLogout, user }: { onAdminClick: 
     <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
-          <a href="#" className="flex items-center gap-2 group cursor-pointer">
+          <a href="/" className="flex items-center gap-2 group cursor-pointer">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg shadow-brand-blue/20 overflow-hidden bg-brand-blue">
               <img src={LOGO_SVG} alt="Mentor Arena Logo" className="w-full h-full object-cover" />
             </div>
@@ -246,8 +246,8 @@ const Navbar = ({ onAdminClick, onLoginClick, onLogout, user }: { onAdminClick: 
           
           <div className="hidden md:flex items-center gap-8">
             <a href="#curriculum" className="text-gray-600 hover:text-brand-blue transition-colors font-medium text-sm">Curriculum</a>
-            <a href="#courses" className="text-gray-600 hover:text-brand-blue transition-colors font-medium text-sm">Paths</a>
-            <a href="#pricing" className="text-gray-600 hover:text-brand-blue transition-colors font-medium text-sm">Pricing</a>
+            <a href="#courses" className="text-gray-600 hover:text-brand-blue transition-colors font-medium text-sm">Mentorship Paths</a>
+            <a href="#pricing" className="text-gray-600 hover:text-brand-blue transition-colors font-medium text-sm">Plans & Pricing</a>
             
             <div className="h-4 w-px bg-gray-200"></div>
 
@@ -282,7 +282,7 @@ const Navbar = ({ onAdminClick, onLoginClick, onLogout, user }: { onAdminClick: 
             )}
 
             <a href="#booking" className="bg-brand-blue text-white px-8 py-3 rounded-xl hover:bg-brand-blue/90 transition-all shadow-xl shadow-brand-blue/10 font-bold text-sm">
-              Join Arena
+              Start Your Mentorship
             </a>
           </div>
 
@@ -330,9 +330,37 @@ const HeroSection = ({ heroBg, onLoginClick, onAdminClick, user }: { heroBg?: st
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium text-brand-blue bg-brand-blue/5 rounded-full border border-brand-blue/10 uppercase tracking-widest">
+        <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium text-brand-blue bg-brand-blue/5 rounded-full border border-brand-blue/10 uppercase tracking-widest">
            {user ? `Welcome back, ${user.name}` : 'Premium Digital Mentorship in Pakistan'}
         </span>
+
+        {/* Google Trust Signal */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="flex items-center justify-center gap-3 mb-8"
+        >
+          <div className="flex items-center gap-1">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} size={14} className={`fill-yellow-400 ${i < 4 ? 'text-yellow-400' : 'text-yellow-400/30'}`} />
+            ))}
+          </div>
+          <a 
+            href="https://www.google.com/search?q=Mentor+Arena+Karachi+Reviews" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-brand-blue transition-colors group"
+          >
+            <img 
+              src="https://www.gstatic.com/images/branding/product/2x/google_24dp.png" 
+              alt="Google" 
+              className="w-4 h-4 grayscale group-hover:grayscale-0 transition-all"
+            />
+            4.8/5 RATING • 13+ VERIFIED REVIEWS
+            <ExternalLink size={10} />
+          </a>
+        </motion.div>
         
         {/* ... (google badge) ... */}
         {/* Simplified for replacement target */}
@@ -1096,7 +1124,7 @@ const PricingSection = () => (
               ))}
             </ul>
             <a href="#booking" className={`w-full py-3 rounded-xl font-bold text-center transition-all ${plan.popular ? 'bg-brand-blue text-white hover:bg-brand-blue/90 shadow-lg shadow-brand-blue/20' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}>
-              Select Plan
+              Select {plan.title} Plan
             </a>
           </div>
         ))}
@@ -1285,7 +1313,7 @@ const BookingSection = ({ paths, slots }: { paths: string[], slots: string[] }) 
               rel="noreferrer"
               className="px-6 py-3 bg-brand-green text-white rounded-xl font-bold hover:bg-brand-green/90 transition-all shadow-lg shadow-brand-green/20 flex items-center justify-center gap-2"
             >
-              <MessageSquare size={18} /> Chat on WhatsApp
+              <MessageSquare size={18} /> Confirm on WhatsApp
             </a>
             <button onClick={() => { setSubmitted(false); setStep(1); }} className="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold hover:bg-gray-200 transition-all">
               Back to Start
@@ -1493,16 +1521,16 @@ const TestimonialsSection = ({ caseStudyImage }: { caseStudyImage?: string }) =>
             <div className="text-left">
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                  <Star key={i} className={`w-5 h-5 ${i < 4 ? 'fill-yellow-400 text-yellow-400' : 'fill-yellow-400/30 text-yellow-400'}`} />
                 ))}
               </div>
-              <div className="text-lg font-bold text-gray-900 mt-1">Excellent 5.0 Rating</div>
+              <div className="text-lg font-bold text-gray-900 mt-1">4.8/5 Rating on Google</div>
             </div>
           </div>
           
           <div className="max-w-2xl mx-auto">
             <p className="text-gray-600 leading-relaxed italic">
-              "Mentor Arena has a perfect 5-star rating on Google Reviews. Our commitment to 1-to-1 practical mentorship ensures every student gets the attention they deserve."
+              "Mentor Arena holds a top-tier 4.8-star rating with verified reviews. Our commitment to 1-to-1 practical mentorship ensures every student gets the attention they deserve."
             </p>
           </div>
 
@@ -1777,9 +1805,20 @@ const FinalCTA = () => (
         <p className="text-xl text-blue-50 mb-10 max-w-2xl mx-auto leading-relaxed">
           You have the potential. You have the hard-work. All you need now is the right channel. Let’s build your digital future together, 1-to-1.
         </p>
-        <a href="#booking" className="inline-flex items-center gap-2 px-10 py-5 bg-white text-brand-blue rounded-2xl font-bold text-xl hover:bg-gray-50 transition-all shadow-xl">
+        <a href="#booking" className="inline-flex items-center gap-2 px-10 py-5 bg-white text-brand-blue rounded-2xl font-bold text-xl hover:bg-gray-50 transition-all shadow-xl mb-8">
           Book a Free Clarity Call <ArrowRight />
         </a>
+
+        <div className="flex flex-col items-center gap-2 opacity-80">
+          <div className="flex items-center gap-1">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} size={14} className={`fill-white ${i < 4 ? 'text-white' : 'text-white/30'}`} />
+            ))}
+          </div>
+          <p className="text-xs font-bold tracking-widest text-blue-100 italic uppercase">
+            Rated 4.8/5 by Verified Students on Google
+          </p>
+        </div>
       </div>
       {/* Decorative circles */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
@@ -1904,16 +1943,18 @@ const Footer = ({ onOpenLegal }: { onOpenLegal: (type: 'privacy' | 'terms' | 'co
           <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Social Connect</h4>
           <div className="flex md:flex-col gap-4">
             {[
-              { Icon: MessageSquare, href: `https://wa.me/${BUSINESS_INFO.phone}`, label: "WhatsApp", color: "text-green-500" },
-              { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61572334738737", label: "Facebook", color: "text-blue-600" },
-              { Icon: Linkedin, href: "https://www.linkedin.com/in/fazal-shahid-mentor/", label: "LinkedIn", color: "text-blue-700" },
-              { Icon: Instagram, href: "https://www.instagram.com/bookmethat/", label: "Instagram", color: "text-pink-600" }
+              { Icon: MessageSquare, href: `https://wa.me/${BUSINESS_INFO.phone}`, label: "WhatsApp Chat", color: "text-green-500" },
+              { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61572334738737", label: "Facebook Page", color: "text-blue-600" },
+              { Icon: Linkedin, href: "https://www.linkedin.com/in/fazal-shahid-mentor/", label: "LinkedIn Profile", color: "text-blue-700" },
+              { Icon: Instagram, href: "https://www.instagram.com/bookmethat/", label: "Instagram Profile", color: "text-pink-600" },
+              { Icon: Star, href: "https://www.google.com/search?q=Mentor+Arena+Karachi+Reviews", label: "Google Reviews", color: "text-yellow-500" }
             ].map((social, i) => (
               <motion.a
                 key={i}
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
+                aria-label={social.label}
                 whileHover={{ y: -4, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-gray-400 shadow-[0_4px_0_0_rgba(0,0,0,0.05)] border border-gray-100 hover:text-gray-900 transition-all group relative"
